@@ -13,13 +13,49 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import {
-  Boxes, Users2, UserCog, Wallet, Calculator, KanbanSquare,
-  Globe, ShoppingCart, Smartphone, Gauge, Wrench as WrenchIcon, ShoppingBag,
-  Sparkles, Wrench, Layers, Rocket, MessageCircle, LifeBuoy,
-  ArrowRight, Phone, Mail, MapPin, Menu, X, Sun, Moon, Star,
-  Linkedin, Facebook, Github, ChevronRight, CheckCircle2,
-  Search, ClipboardList, Paintbrush, Code, PlayCircle,
-  Factory, Stethoscope, GraduationCap, Truck, Landmark, Store,
+  Boxes,
+  Users2,
+  UserCog,
+  Wallet,
+  Calculator,
+  KanbanSquare,
+  Globe,
+  ShoppingCart,
+  Smartphone,
+  Gauge,
+  Wrench as WrenchIcon,
+  ShoppingBag,
+  Sparkles,
+  Wrench,
+  Layers,
+  Rocket,
+  MessageCircle,
+  LifeBuoy,
+  ArrowRight,
+  Phone,
+  Mail,
+  MapPin,
+  Menu,
+  X,
+  Sun,
+  Moon,
+  Star,
+  Linkedin,
+  Facebook,
+  Github,
+  ChevronRight,
+  CheckCircle2,
+  Search,
+  ClipboardList,
+  Paintbrush,
+  Code,
+  PlayCircle,
+  Factory,
+  Stethoscope,
+  GraduationCap,
+  Truck,
+  Landmark,
+  Store,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import heroVisual from "@/assets/hero-visual.jpg";
@@ -85,15 +121,28 @@ function Index() {
 }
 
 /* ---------------- Reveal-on-scroll ---------------- */
-function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setShown(true); io.disconnect(); } },
-      { threshold: 0.15 }
+      ([e]) => {
+        if (e.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -120,7 +169,14 @@ function TopBar() {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-2 text-xs sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 font-medium">
           <span className="hidden sm:inline opacity-80">Proud sister concern of</span>
-          <a href="https://viserx.com" target="_blank" rel="noreferrer" className="font-bold tracking-wide hover:underline">VISER X</a>
+          <a
+            href="https://viserx.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-bold tracking-wide hover:underline"
+          >
+            VISER X
+          </a>
           <span className="hidden md:inline opacity-60">•</span>
           <span className="hidden md:inline opacity-90">Engineering revenue-driven software</span>
         </div>
@@ -128,7 +184,10 @@ function TopBar() {
           <a href="tel:+8801842088100" className="inline-flex items-center gap-1.5 hover:underline">
             <Phone className="h-3.5 w-3.5" /> +88 018-42088100
           </a>
-          <a href="mailto:info@newtonixtech.com" className="hidden sm:inline-flex items-center gap-1.5 hover:underline">
+          <a
+            href="mailto:info@newtonixtech.com"
+            className="hidden sm:inline-flex items-center gap-1.5 hover:underline"
+          >
             <Mail className="h-3.5 w-3.5" /> info@newtonixtech.com
           </a>
         </div>
@@ -153,7 +212,9 @@ function Navbar() {
   return (
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled ? "glass shadow-card" : "bg-background/60 backdrop-blur border-b border-transparent"
+        scrolled
+          ? "glass shadow-card"
+          : "bg-background/60 backdrop-blur border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
@@ -161,7 +222,10 @@ function Navbar() {
           <span className="grid h-9 w-9 place-items-center rounded-lg brand-gradient shadow-glow">
             <span className="text-sm font-black text-white">N</span>
           </span>
-          <span className="font-display text-base font-extrabold tracking-tight">Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech</span>
+          <span className="font-display text-base font-extrabold tracking-tight">NewtonixTech</span>
+          {/* <span className="font-display text-base font-extrabold tracking-tight">
+            Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
+          </span> */}
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -240,23 +304,27 @@ function Hero() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs font-semibold">
               <span className="flex items-center gap-0.5 text-amber-400">
-                {[0,1,2,3,4].map(i => <Star key={i} className="h-3 w-3 fill-current" />)}
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Star key={i} className="h-3 w-3 fill-current" />
+                ))}
               </span>
-              <span className="text-foreground">5.0</span>
+              <span className="text-foreground">4.9</span>
               <span className="text-muted-foreground">Rated by clients</span>
             </div>
           </Reveal>
           <Reveal delay={80}>
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
               Custom Software &<br />
-              <span className="text-gradient">Web Solutions</span> Built<br />
+              <span className="text-gradient">Web Solutions</span> Built
+              <br />
               for Growing Businesses
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Newtonix Tech helps businesses streamline operations, win more customers, and accelerate
-              growth through tailored software, mobile apps, and high-performance websites.
+              Newtonix Tech helps businesses streamline operations, win more customers, and
+              accelerate growth through tailored software, mobile apps, and high-performance
+              websites.
             </p>
           </Reveal>
           <Reveal delay={220}>
@@ -283,7 +351,9 @@ function Hero() {
                 { k: "24h", v: "Response" },
               ].map((s) => (
                 <div key={s.v}>
-                  <div className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">{s.k}</div>
+                  <div className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+                    {s.k}
+                  </div>
                   <div className="text-xs text-muted-foreground">{s.v}</div>
                 </div>
               ))}
@@ -320,9 +390,21 @@ function Hero() {
 
 /* ---------------- Logo Marquee ---------------- */
 const brandLogos = [
-  "Bridge Chemie", "Clipping Pixel", "AM Group", "Deen", "Guidance",
-  "Macy's", "Naaptol", "Business Post", "ShareTrip", "AKIJ Resource",
-  "Mercari", "Sakura", "Oakwood", "Hatil", "Apple Gadgets",
+  "Bridge Chemie",
+  "Clipping Pixel",
+  "AM Group",
+  "Deen",
+  "Guidance",
+  "Macy's",
+  "Naaptol",
+  "Business Post",
+  "ShareTrip",
+  "AKIJ Resource",
+  "Mercari",
+  "Sakura",
+  "Oakwood",
+  "Hatil",
+  "Apple Gadgets",
 ];
 function LogoMarquee() {
   const row = [...brandLogos, ...brandLogos];
@@ -335,7 +417,10 @@ function LogoMarquee() {
         <div className="relative mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div className="flex w-max items-center gap-12 animate-marquee">
             {row.map((b, i) => (
-              <span key={`${b}-${i}`} className="font-display whitespace-nowrap text-lg font-bold tracking-tight text-muted-foreground/70 hover:text-foreground transition-colors">
+              <span
+                key={`${b}-${i}`}
+                className="font-display whitespace-nowrap text-lg font-bold tracking-tight text-muted-foreground/70 hover:text-foreground transition-colors"
+              >
                 {b}
               </span>
             ))}
@@ -351,22 +436,26 @@ type Svc = { icon: typeof Boxes; title: string; desc: string; bullets: string[] 
 
 const webSvcs: Svc[] = [
   {
-    icon: Globe, title: "Website Development",
+    icon: Globe,
+    title: "Website Development",
     desc: "High-converting marketing & corporate websites engineered for speed and SEO.",
     bullets: ["Custom CMS", "SEO-ready", "Mobile-first"],
   },
   {
-    icon: ShoppingBag, title: "Ecommerce Website",
+    icon: ShoppingBag,
+    title: "Ecommerce Website",
     desc: "Storefronts and marketplaces with smooth checkout and scalable catalog.",
     bullets: ["Multi-payment", "Inventory sync", "Vendor system"],
   },
   {
-    icon: Gauge, title: "Website Speed Optimization",
+    icon: Gauge,
+    title: "Website Speed Optimization",
     desc: "Make your existing site load in under 2 seconds — Core Web Vitals first.",
     bullets: ["Core Web Vitals", "Image / cache", "Lighthouse 95+"],
   },
   {
-    icon: WrenchIcon, title: "Website Maintenance",
+    icon: WrenchIcon,
+    title: "Website Maintenance",
     desc: "Ongoing security, updates, monitoring and content management you can trust.",
     bullets: ["Security patches", "Daily backups", "24/7 monitoring"],
   },
@@ -374,42 +463,50 @@ const webSvcs: Svc[] = [
 
 const softwareSvcs: Svc[] = [
   {
-    icon: Boxes, title: "ERP",
+    icon: Boxes,
+    title: "ERP",
     desc: "Unified platforms that connect operations, inventory and finance end-to-end.",
     bullets: ["Inventory & POS", "Manufacturing", "Multi-branch"],
   },
   {
-    icon: ShoppingCart, title: "Ecommerce Platform",
+    icon: ShoppingCart,
+    title: "Ecommerce Platform",
     desc: "Headless or full-stack commerce engines tailored to your business model.",
     bullets: ["B2B / B2C", "Marketplace", "Subscription"],
   },
   {
-    icon: KanbanSquare, title: "Project Management",
+    icon: KanbanSquare,
+    title: "Project Management",
     desc: "Custom PM tools with timelines, resourcing and real-time visibility.",
     bullets: ["Kanban / Gantt", "Timesheets", "Client portals"],
   },
   {
-    icon: Users2, title: "CRM",
+    icon: Users2,
+    title: "CRM",
     desc: "Sales pipelines and customer 360 dashboards built around how your team sells.",
     bullets: ["Lead capture", "Forecasting", "Automation"],
   },
   {
-    icon: UserCog, title: "HR Management",
+    icon: UserCog,
+    title: "HR Management",
     desc: "Hiring, onboarding, attendance, leave and performance — all in one place.",
     bullets: ["Attendance", "Recruitment", "Performance"],
   },
   {
-    icon: Calculator, title: "Accounts & Finance",
+    icon: Calculator,
+    title: "Accounts & Finance",
     desc: "Books, invoicing, taxation and financial reporting tailored to your workflows.",
     bullets: ["GL & journals", "VAT / TAX", "P&L dashboards"],
   },
   {
-    icon: Wallet, title: "Payroll",
+    icon: Wallet,
+    title: "Payroll",
     desc: "Accurate, compliant payroll with tax, leave and benefits handled automatically.",
     bullets: ["Tax compliance", "Payslips", "Bank file export"],
   },
   {
-    icon: Smartphone, title: "Mobile App",
+    icon: Smartphone,
+    title: "Mobile App",
     desc: "Cross-platform iOS & Android apps powered by React Native and Flutter.",
     bullets: ["iOS + Android", "Push & offline", "App Store launch"],
   },
@@ -420,8 +517,13 @@ type Tab = "all" | "web" | "software";
 function ServiceCard({ icon: Icon, title, desc, bullets }: Svc) {
   return (
     <div className="group relative h-full overflow-hidden rounded-2xl glass p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-elegant">
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
-           style={{ background: "radial-gradient(60% 80% at 0% 0%, color-mix(in oklab, var(--color-brand) 18%, transparent), transparent 60%)" }} />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(60% 80% at 0% 0%, color-mix(in oklab, var(--color-brand) 18%, transparent), transparent 60%)",
+        }}
+      />
       <div className="relative">
         <div className="grid h-11 w-11 place-items-center rounded-xl brand-gradient text-white shadow-glow">
           <Icon className="h-5 w-5" />
@@ -429,7 +531,7 @@ function ServiceCard({ icon: Icon, title, desc, bullets }: Svc) {
         <h3 className="font-display mt-4 text-lg font-bold tracking-tight">{title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
         <ul className="mt-4 space-y-1.5">
-          {bullets.map(b => (
+          {bullets.map((b) => (
             <li key={b} className="flex items-center gap-2 text-xs text-muted-foreground">
               <CheckCircle2 className="h-3.5 w-3.5 text-[color:var(--color-brand)]" /> {b}
             </li>
@@ -456,19 +558,22 @@ function Services() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">What We Do</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              What We Do
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Solutions Built Around <span className="text-gradient">Your Business</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
-              From websites that convert to enterprise software that scales — engineered for measurable revenue impact.
+              From websites that convert to enterprise software that scales — engineered for
+              measurable revenue impact.
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={60}>
           <div className="mt-10 flex flex-wrap justify-center gap-2">
-            {tabs.map(t => (
+            {tabs.map((t) => (
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
@@ -489,13 +594,17 @@ function Services() {
             <Reveal delay={80}>
               <div className="mt-12 flex items-center gap-3">
                 <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">Web Development</span>
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                  Web Development
+                </span>
                 <span className="h-px flex-1 bg-border" />
               </div>
             </Reveal>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {webSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}><ServiceCard {...s} /></Reveal>
+                <Reveal key={s.title} delay={i * 50}>
+                  <ServiceCard {...s} />
+                </Reveal>
               ))}
             </div>
           </>
@@ -506,13 +615,17 @@ function Services() {
             <Reveal delay={80}>
               <div className="mt-16 flex items-center gap-3">
                 <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">Software Solutions</span>
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                  Software Solutions
+                </span>
                 <span className="h-px flex-1 bg-border" />
               </div>
             </Reveal>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {softwareSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}><ServiceCard {...s} /></Reveal>
+                <Reveal key={s.title} delay={i * 50}>
+                  <ServiceCard {...s} />
+                </Reveal>
               ))}
             </div>
           </>
@@ -540,7 +653,9 @@ function Industries() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Industries</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              Industries
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
               Industries We <span className="text-gradient">Power</span>
             </h2>
@@ -585,15 +700,30 @@ function Stat({ value, suffix = "", label }: { value: number; suffix?: string; l
   const ref = useRef<HTMLDivElement>(null);
   const [seen, setSeen] = useState(false);
   useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect(); } }, { threshold: 0.4 });
-    io.observe(el); return () => io.disconnect();
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setSeen(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
   const n = useCounter(value, 1400, seen);
   return (
     <div ref={ref} className="rounded-2xl glass p-6 text-center">
-      <div className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl text-gradient">{n}{suffix}</div>
-      <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</div>
+      <div className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl text-gradient">
+        {n}
+        {suffix}
+      </div>
+      <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </div>
     </div>
   );
 }
@@ -615,12 +745,36 @@ function Stats() {
 
 /* ---------------- Why Us ---------------- */
 const whyItems = [
-  { icon: Sparkles, title: "Powered by VISER X Experience", desc: "Backed by years of enterprise delivery — methodology, talent and trust inherited." },
-  { icon: Wrench, title: "Custom-Built Solutions", desc: "No templates. Software shaped to your workflows, KPIs and growth model." },
-  { icon: Layers, title: "Scalable Architecture", desc: "Built to handle 10x usage without re-platforming or technical debt." },
-  { icon: Rocket, title: "Fast Delivery", desc: "Sprint-based delivery with usable milestones every two weeks." },
-  { icon: MessageCircle, title: "Transparent Communication", desc: "Direct access to engineers and weekly progress demos — no black box." },
-  { icon: LifeBuoy, title: "Dedicated Support", desc: "SLA-backed post-launch support, monitoring and continuous improvements." },
+  {
+    icon: Sparkles,
+    title: "Powered by VISER X Experience",
+    desc: "Backed by years of enterprise delivery — methodology, talent and trust inherited.",
+  },
+  {
+    icon: Wrench,
+    title: "Custom-Built Solutions",
+    desc: "No templates. Software shaped to your workflows, KPIs and growth model.",
+  },
+  {
+    icon: Layers,
+    title: "Scalable Architecture",
+    desc: "Built to handle 10x usage without re-platforming or technical debt.",
+  },
+  {
+    icon: Rocket,
+    title: "Fast Delivery",
+    desc: "Sprint-based delivery with usable milestones every two weeks.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Transparent Communication",
+    desc: "Direct access to engineers and weekly progress demos — no black box.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Dedicated Support",
+    desc: "SLA-backed post-launch support, monitoring and continuous improvements.",
+  },
 ];
 
 function WhyUs() {
@@ -630,7 +784,9 @@ function WhyUs() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Why Us</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              Why Us
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Why Businesses Choose <span className="text-gradient">Newtonix Tech</span>
             </h2>
@@ -668,18 +824,25 @@ function TechStack() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Stack</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              Stack
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Technologies <span className="text-gradient">We Use</span>
             </h2>
-            <p className="mt-4 text-muted-foreground">A modern, battle-tested stack chosen for performance, longevity and developer velocity.</p>
+            <p className="mt-4 text-muted-foreground">
+              A modern, battle-tested stack chosen for performance, longevity and developer
+              velocity.
+            </p>
           </div>
         </Reveal>
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {techGroups.map((g, i) => (
             <Reveal key={g.label} delay={i * 70}>
               <div className="h-full rounded-2xl glass p-6">
-                <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">{g.label}</div>
+                <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  {g.label}
+                </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {g.items.map((t) => (
                     <span
@@ -702,11 +865,23 @@ function TechStack() {
 
 /* ---------------- Process ---------------- */
 const steps = [
-  { icon: Search, title: "Discovery", desc: "We deeply understand your business, users and goals." },
-  { icon: ClipboardList, title: "Planning", desc: "Scope, architecture, milestones and success criteria." },
+  {
+    icon: Search,
+    title: "Discovery",
+    desc: "We deeply understand your business, users and goals.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Planning",
+    desc: "Scope, architecture, milestones and success criteria.",
+  },
   { icon: Paintbrush, title: "Design", desc: "Interfaces and flows mapped to real user behavior." },
   { icon: Code, title: "Development", desc: "Iterative sprints with weekly demos and feedback." },
-  { icon: PlayCircle, title: "Launch & Support", desc: "Go-live, training and continuous improvement." },
+  {
+    icon: PlayCircle,
+    title: "Launch & Support",
+    desc: "Go-live, training and continuous improvement.",
+  },
 ];
 
 function Process() {
@@ -716,11 +891,15 @@ function Process() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Process</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              Process
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Our Development <span className="text-gradient">Process</span>
             </h2>
-            <p className="mt-4 text-muted-foreground">A structured approach that ensures successful project delivery.</p>
+            <p className="mt-4 text-muted-foreground">
+              A structured approach that ensures successful project delivery.
+            </p>
           </div>
         </Reveal>
 
@@ -733,8 +912,12 @@ function Process() {
                   <div className="mx-auto grid h-12 w-12 place-items-center rounded-full brand-gradient text-white shadow-elegant relative z-10">
                     <s.icon className="h-5 w-5" />
                   </div>
-                  <div className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Step {i + 1}</div>
-                  <h3 className="font-display mt-1 text-base font-bold tracking-tight">{s.title}</h3>
+                  <div className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Step {i + 1}
+                  </div>
+                  <h3 className="font-display mt-1 text-base font-bold tracking-tight">
+                    {s.title}
+                  </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
                 </div>
               </Reveal>
@@ -751,8 +934,12 @@ function Process() {
                   <div className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full brand-gradient text-white shadow-elegant">
                     <s.icon className="h-4 w-4" />
                   </div>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Step {i + 1}</div>
-                  <h3 className="font-display mt-0.5 text-base font-bold tracking-tight">{s.title}</h3>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Step {i + 1}
+                  </div>
+                  <h3 className="font-display mt-0.5 text-base font-bold tracking-tight">
+                    {s.title}
+                  </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
                 </li>
               </Reveal>
@@ -766,11 +953,36 @@ function Process() {
 
 /* ---------------- Portfolio ---------------- */
 const projects = [
-  { img: projErp, title: "Manufacturing ERP Platform", category: "ERP", desc: "End-to-end production, inventory and finance for a multi-facility manufacturer." },
-  { img: projCrm, title: "Sales CRM Dashboard", category: "CRM", desc: "Pipeline visibility and forecasting for a high-velocity B2B sales team." },
-  { img: projHr, title: "HR & Payroll Management", category: "HR / Payroll", desc: "Attendance, payroll and compliance for 1,000+ employees across regions." },
-  { img: projEcom, title: "Multi-Vendor E-commerce", category: "Ecommerce", desc: "Marketplace with vendor onboarding, payouts and unified storefront." },
-  { img: projCorp, title: "Corporate Business Website", category: "Website", desc: "Brand-led, multilingual corporate site with custom CMS and case studies." },
+  {
+    img: projErp,
+    title: "Manufacturing ERP Platform",
+    category: "ERP",
+    desc: "End-to-end production, inventory and finance for a multi-facility manufacturer.",
+  },
+  {
+    img: projCrm,
+    title: "Sales CRM Dashboard",
+    category: "CRM",
+    desc: "Pipeline visibility and forecasting for a high-velocity B2B sales team.",
+  },
+  {
+    img: projHr,
+    title: "HR & Payroll Management",
+    category: "HR / Payroll",
+    desc: "Attendance, payroll and compliance for 1,000+ employees across regions.",
+  },
+  {
+    img: projEcom,
+    title: "Multi-Vendor E-commerce",
+    category: "Ecommerce",
+    desc: "Marketplace with vendor onboarding, payouts and unified storefront.",
+  },
+  {
+    img: projCorp,
+    title: "Corporate Business Website",
+    category: "Website",
+    desc: "Brand-led, multilingual corporate site with custom CMS and case studies.",
+  },
 ];
 
 function Portfolio() {
@@ -779,18 +991,24 @@ function Portfolio() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Portfolio</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              Portfolio
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Project <span className="text-gradient">Showcase</span>
             </h2>
-            <p className="mt-4 text-muted-foreground">Examples of software and web solutions we build.</p>
+            <p className="mt-4 text-muted-foreground">
+              Examples of software and web solutions we build.
+            </p>
           </div>
         </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.title} delay={i * 70}>
-              <article className={`group h-full overflow-hidden rounded-2xl glass transition-all duration-300 hover:-translate-y-1 hover:shadow-elegant ${i === 0 ? "lg:col-span-2" : ""}`}>
+              <article
+                className={`group h-full overflow-hidden rounded-2xl glass transition-all duration-300 hover:-translate-y-1 hover:shadow-elegant ${i === 0 ? "lg:col-span-2" : ""}`}
+              >
                 <div className="relative overflow-hidden">
                   <img
                     src={p.img}
@@ -828,20 +1046,31 @@ function SisterBrand() {
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full brand-gradient opacity-20 blur-3xl" />
             <div className="relative grid items-center gap-6 lg:grid-cols-[1.4fr_1fr]">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Part of the VISER X group</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+                  Part of the VISER X group
+                </p>
                 <h3 className="font-display mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
                   Backed by a $10M+ revenue-driven agency.
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Newtonix Tech is the software & engineering arm of VISER X — a Clutch 5.0 rated growth partner
-                  trusted by 120+ brands. You get startup speed with enterprise pedigree.
+                  Newtonix Tech is the software & engineering arm of VISER X — a Clutch 5.0 rated
+                  growth partner trusted by 120+ brands. You get startup speed with enterprise
+                  pedigree.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 lg:justify-end">
-                <a href="https://viserx.com" target="_blank" rel="noreferrer" className="btn-pill brand-gradient text-white shadow-elegant">
+                <a
+                  href="https://viserx.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-pill brand-gradient text-white shadow-elegant"
+                >
                   Visit VISER X <ArrowRight className="h-4 w-4" />
                 </a>
-                <a href="#contact" className="btn-pill border border-border bg-card/40 text-foreground hover:bg-accent">
+                <a
+                  href="#contact"
+                  className="btn-pill border border-border bg-card/40 text-foreground hover:bg-accent"
+                >
                   Start a project
                 </a>
               </div>
@@ -855,12 +1084,30 @@ function SisterBrand() {
 
 /* ---------------- FAQ ---------------- */
 const faqs = [
-  { q: "What industries do you serve?", a: "We work across manufacturing, retail, e-commerce, education, healthcare, logistics, financial services, and professional services." },
-  { q: "How long does a software project take?", a: "Most custom solutions take 8–16 weeks from kickoff to launch, depending on scope. We deliver in two-week sprints so you see working software early and often." },
-  { q: "Do you provide post-launch support?", a: "Yes. Every engagement includes warranty support, and we offer SLA-backed maintenance, monitoring, and continuous improvement plans." },
-  { q: "Can you develop custom business software?", a: "Absolutely — custom ERP, CRM, HR, payroll, accounting, mobile apps, and bespoke internal tools are our core. We build around your processes, not a template." },
-  { q: "Do you work with international clients?", a: "Yes. We work remotely with clients across Asia, the Middle East, Europe, and North America with overlapping working hours and async-friendly processes." },
-  { q: "How do we get started?", a: "Request a free consultation. We'll explore your goals, recommend an approach, and share a clear proposal — usually within a week." },
+  {
+    q: "What industries do you serve?",
+    a: "We work across manufacturing, retail, e-commerce, education, healthcare, logistics, financial services, and professional services.",
+  },
+  {
+    q: "How long does a software project take?",
+    a: "Most custom solutions take 8–16 weeks from kickoff to launch, depending on scope. We deliver in two-week sprints so you see working software early and often.",
+  },
+  {
+    q: "Do you provide post-launch support?",
+    a: "Yes. Every engagement includes warranty support, and we offer SLA-backed maintenance, monitoring, and continuous improvement plans.",
+  },
+  {
+    q: "Can you develop custom business software?",
+    a: "Absolutely — custom ERP, CRM, HR, payroll, accounting, mobile apps, and bespoke internal tools are our core. We build around your processes, not a template.",
+  },
+  {
+    q: "Do you work with international clients?",
+    a: "Yes. We work remotely with clients across Asia, the Middle East, Europe, and North America with overlapping working hours and async-friendly processes.",
+  },
+  {
+    q: "How do we get started?",
+    a: "Request a free consultation. We'll explore your goals, recommend an approach, and share a clear proposal — usually within a week.",
+  },
 ];
 
 function Faq() {
@@ -869,7 +1116,9 @@ function Faq() {
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">FAQ</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              FAQ
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
@@ -926,8 +1175,10 @@ function Contact() {
     const details = String(fd.get("details") ?? "").trim();
 
     if (!name || name.length > 100) return toast.error("Please enter your name.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) return toast.error("Please enter a valid email.");
-    if (!details || details.length > 2000) return toast.error("Please share a few words about your project.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
+      return toast.error("Please enter a valid email.");
+    if (!details || details.length > 2000)
+      return toast.error("Please share a few words about your project.");
 
     setSubmitting(true);
     setTimeout(() => {
@@ -943,7 +1194,9 @@ function Contact() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <Reveal>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">Contact</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+              Contact
+            </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               Let's Build Something <span className="text-gradient">Great Together</span>
             </h2>
@@ -957,8 +1210,13 @@ function Contact() {
                   <Mail className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email</div>
-                  <a href="mailto:info@newtonixtech.com" className="block break-all text-sm font-medium hover:text-[color:var(--color-brand)]">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Email
+                  </div>
+                  <a
+                    href="mailto:info@newtonixtech.com"
+                    className="block break-all text-sm font-medium hover:text-[color:var(--color-brand)]"
+                  >
                     info@newtonixtech.com
                   </a>
                 </div>
@@ -968,8 +1226,13 @@ function Contact() {
                   <Phone className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Phone</div>
-                  <a href="tel:+8801842088100" className="block text-sm font-medium hover:text-[color:var(--color-brand)]">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Phone
+                  </div>
+                  <a
+                    href="tel:+8801842088100"
+                    className="block text-sm font-medium hover:text-[color:var(--color-brand)]"
+                  >
                     +88 018-42088100
                   </a>
                 </div>
@@ -979,9 +1242,13 @@ function Contact() {
                   <MapPin className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Address</div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Address
+                  </div>
                   <p className="text-sm font-medium leading-relaxed">
-                    Plot 06, Road 02, Sector 11,<br />Uttara, Dhaka-1230, Bangladesh
+                    Plot 06, Road 02, Sector 11,
+                    <br />
+                    Uttara, Dhaka-1230, Bangladesh
                   </p>
                 </div>
               </li>
@@ -1013,24 +1280,53 @@ function Contact() {
             noValidate
           >
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Full Name" name="name" placeholder="Jane Doe" required maxLength={100} />
+              <Field
+                label="Full Name"
+                name="name"
+                placeholder="Jane Doe"
+                required
+                maxLength={100}
+              />
               <Field label="Company Name" name="company" placeholder="Acme Inc." maxLength={120} />
-              <Field label="Email Address" name="email" type="email" placeholder="you@company.com" required maxLength={255} />
+              <Field
+                label="Email Address"
+                name="email"
+                type="email"
+                placeholder="you@company.com"
+                required
+                maxLength={255}
+              />
               <Field label="Phone Number" name="phone" placeholder="+880 …" maxLength={30} />
               <div className="sm:col-span-2">
-                <Label htmlFor="service" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Service Required</Label>
+                <Label
+                  htmlFor="service"
+                  className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+                >
+                  Service Required
+                </Label>
                 <select
                   id="service"
                   name="service"
                   className="mt-1.5 w-full rounded-lg border border-border bg-card/40 px-3 py-2.5 text-sm text-foreground outline-none ring-0 backdrop-blur transition-colors focus:border-[color:var(--color-brand)]"
                   defaultValue=""
                 >
-                  <option value="" disabled>Select a service…</option>
-                  {serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}
+                  <option value="" disabled>
+                    Select a service…
+                  </option>
+                  {serviceOptions.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="sm:col-span-2">
-                <Label htmlFor="details" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Project Details</Label>
+                <Label
+                  htmlFor="details"
+                  className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+                >
+                  Project Details
+                </Label>
                 <Textarea
                   id="details"
                   name="details"
@@ -1062,12 +1358,28 @@ function Contact() {
 }
 
 function Field({
-  label, name, type = "text", placeholder, required, maxLength,
-}: { label: string; name: string; type?: string; placeholder?: string; required?: boolean; maxLength?: number }) {
+  label,
+  name,
+  type = "text",
+  placeholder,
+  required,
+  maxLength,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  placeholder?: string;
+  required?: boolean;
+  maxLength?: number;
+}) {
   return (
     <div>
-      <Label htmlFor={name} className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        {label}{required && <span className="text-[color:var(--color-brand)]"> *</span>}
+      <Label
+        htmlFor={name}
+        className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+      >
+        {label}
+        {required && <span className="text-[color:var(--color-brand)]"> *</span>}
       </Label>
       <Input
         id={name}
@@ -1093,7 +1405,9 @@ function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-lg brand-gradient shadow-glow">
                 <span className="text-sm font-black text-white">N</span>
               </span>
-              <span className="font-display text-base font-extrabold tracking-tight">Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech</span>
+              <span className="font-display text-base font-extrabold tracking-tight">
+                Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
+              </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Custom Software & Web Solutions for Modern Businesses.
@@ -1117,29 +1431,41 @@ function Footer() {
             </div>
           </div>
 
-          <FooterCol title="Web Development" items={[
-            { label: "Website Development", href: "#services" },
-            { label: "Ecommerce Website", href: "#services" },
-            { label: "Speed Optimization", href: "#services" },
-            { label: "Website Maintenance", href: "#services" },
-          ]} />
-          <FooterCol title="Software Solutions" items={[
-            { label: "ERP", href: "#services" },
-            { label: "CRM", href: "#services" },
-            { label: "HR & Payroll", href: "#services" },
-            { label: "Accounts & Finance", href: "#services" },
-            { label: "Mobile App", href: "#services" },
-          ]} />
+          <FooterCol
+            title="Web Development"
+            items={[
+              { label: "Website Development", href: "#services" },
+              { label: "Ecommerce Website", href: "#services" },
+              { label: "Speed Optimization", href: "#services" },
+              { label: "Website Maintenance", href: "#services" },
+            ]}
+          />
+          <FooterCol
+            title="Software Solutions"
+            items={[
+              { label: "ERP", href: "#services" },
+              { label: "CRM", href: "#services" },
+              { label: "HR & Payroll", href: "#services" },
+              { label: "Accounts & Finance", href: "#services" },
+              { label: "Mobile App", href: "#services" },
+            ]}
+          />
           <div>
-            <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">Contact Information</div>
+            <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Contact Information
+            </div>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
-                <a href="mailto:info@newtonixtech.com" className="break-all hover:text-foreground">info@newtonixtech.com</a>
+                <a href="mailto:info@newtonixtech.com" className="break-all hover:text-foreground">
+                  info@newtonixtech.com
+                </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
-                <a href="tel:+8801842088100" className="hover:text-foreground">+88 018-42088100</a>
+                <a href="tel:+8801842088100" className="hover:text-foreground">
+                  +88 018-42088100
+                </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
@@ -1161,11 +1487,18 @@ function Footer() {
 function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div>
-      <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">{title}</div>
+      <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
+        {title}
+      </div>
       <ul className="mt-4 space-y-2 text-sm">
         {items.map((i) => (
           <li key={i.label}>
-            <a href={i.href} className="text-muted-foreground transition-colors hover:text-foreground">{i.label}</a>
+            <a
+              href={i.href}
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {i.label}
+            </a>
           </li>
         ))}
       </ul>
