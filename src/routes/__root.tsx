@@ -92,6 +92,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Newtonix Tech — Custom Software & Web Solutions" },
+      { name: "description", content: "Newtonix Tech offers custom software and web solutions for businesses, focusing on efficiency and growth." },
+      { property: "og:description", content: "Newtonix Tech offers custom software and web solutions for businesses, focusing on efficiency and growth." },
+      { name: "twitter:description", content: "Newtonix Tech offers custom software and web solutions for businesses, focusing on efficiency and growth." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a09833dd-772a-4577-89fd-36e9adfd4843/id-preview-0de42883--361b2db9-3c66-4f19-a0a0-af95790ee6e5.lovable.app-1782376693180.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a09833dd-772a-4577-89fd-36e9adfd4843/id-preview-0de42883--361b2db9-3c66-4f19-a0a0-af95790ee6e5.lovable.app-1782376693180.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
