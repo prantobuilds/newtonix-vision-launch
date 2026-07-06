@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   Accordion,
@@ -207,7 +206,9 @@ function Navbar() {
           <span className="grid h-9 w-9 place-items-center rounded-lg brand-gradient shadow-glow">
             <span className="text-sm font-black text-white">N</span>
           </span>
-          <span className="font-display text-base font-extrabold tracking-tight">NewtonixTech</span>
+          <span className="font-display text-base font-extrabold tracking-tight">
+            Newtonix Technology
+          </span>
           {/* <span className="font-display text-base font-extrabold tracking-tight">
             Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
           </span> */}
