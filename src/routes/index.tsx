@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   Accordion,
@@ -65,24 +65,9 @@ import projHr from "@/assets/project-hr.jpg";
 import projEcom from "@/assets/project-ecom.jpg";
 import projCorp from "@/assets/project-corp.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Newtonix Tech — Custom Software & Web Solutions" },
-      {
-        name: "description",
-        content:
-          "Newtonix Tech builds custom ERP, CRM, HR, payroll, mobile apps, and web solutions. A sister concern of VISER X.",
-      },
-      { property: "og:title", content: "Newtonix Tech — Custom Software & Web Solutions" },
-      {
-        property: "og:description",
-        content: "Custom software and web solutions built for growing businesses.",
-      },
-    ],
-  }),
-  component: Index,
-});
+export default function IndexRoute() {
+  return <Index />;
+}
 
 const navItems = [
   { label: "Services", href: "#services" },
