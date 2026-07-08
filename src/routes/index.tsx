@@ -93,7 +93,7 @@ function Index() {
         <WhyUs />
         <TechStack />
         <Process />
-        <Portfolio />
+        {/* <Portfolio /> */}
         <SisterBrand />
         <Faq />
         <Contact />
@@ -1394,8 +1394,11 @@ function Footer() {
                 <span className="text-sm font-black text-white">N</span>
               </span>
               <span className="font-display text-base font-extrabold tracking-tight">
-                Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
+                Newtonix Technology
               </span>
+              {/* <span className="font-display text-base font-extrabold tracking-tight">
+                Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
+              </span> */}
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Custom Software & Web Solutions for Modern Businesses.
@@ -1512,7 +1515,7 @@ function BackToTopButton() {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Back to top"
-      className="fixed bottom-24 right-5 z-40 grid h-12 w-12 place-items-center rounded-full border border-border/80 bg-background/90 text-foreground shadow-elegant backdrop-blur transition-all hover:-translate-y-1 hover:bg-accent"
+      className="fixed bottom-24 right-5 z-40 grid h-14 w-14 place-items-center rounded-full border border-white/20 text-white shadow-elegant transition-all hover:-translate-y-1 hover:scale-110 brand-gradient"
     >
       <ArrowUp className="h-5 w-5" />
     </button>
@@ -1527,9 +1530,9 @@ function FloatingWhatsApp() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[oklch(0.72_0.17_150)] text-white shadow-elegant transition-transform hover:scale-110"
+      className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full border border-white/20 text-white shadow-elegant transition-all hover:-translate-y-1 hover:scale-110 brand-gradient"
     >
-      <span className="pointer-events-none absolute inset-0 rounded-full bg-[oklch(0.72_0.17_150)] opacity-70 animate-ping" />
+      <span className="pointer-events-none absolute inset-0 rounded-full opacity-70 animate-ping brand-gradient" />
       <MessageCircle className="relative h-6 w-6" />
     </a>
   );
