@@ -31,6 +31,7 @@ import {
   MessageCircle,
   LifeBuoy,
   ArrowRight,
+  ArrowUp,
   Phone,
   Mail,
   MapPin,
@@ -98,6 +99,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <BackToTopButton />
       <FloatingWhatsApp />
       <Toaster richColors position="top-right" />
     </div>
@@ -1489,6 +1491,31 @@ function FooterCol({ title, items }: { title: string; items: { label: string; hr
         ))}
       </ul>
     </div>
+  );
+}
+
+/* ---------------- Back to Top ---------------- */
+function BackToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+      className="fixed bottom-24 right-5 z-40 grid h-12 w-12 place-items-center rounded-full border border-border/80 bg-background/90 text-foreground shadow-elegant backdrop-blur transition-all hover:-translate-y-1 hover:bg-accent"
+    >
+      <ArrowUp className="h-5 w-5" />
+    </button>
   );
 }
 
