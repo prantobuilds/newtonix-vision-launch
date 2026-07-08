@@ -12,13 +12,45 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import {
+  FaReact,
+  FaNode,
+  FaLaravel,
+  FaPhp,
+  FaPython,
+  FaServer,
+  FaDatabase,
+  FaJsSquare,
+  FaAws,
+  FaGoogle,
+  FaMicrosoft,
+  FaDocker,
+  FaWordpress,
+  FaShopify,
+  FaGit,
+  FaGithub,
+  FaGitlab,
+  FaJira,
+  FaFigma,
+  FaVuejs,
+  FaCss3Alt,
+  FaMobile,
+  FaLeaf,
+  FaBox,
+} from "react-icons/fa";
+import {
   Boxes,
+  Server,
+  Database,
+  Box,
   Users2,
   UserCog,
   Wallet,
   Calculator,
   KanbanSquare,
   Globe,
+  Zap,
+  Cloud,
+  Lightbulb,
   ShoppingCart,
   Smartphone,
   Gauge,
@@ -44,6 +76,7 @@ import {
   Facebook,
   Github,
   ChevronRight,
+  ChevronDown,
   CheckCircle2,
   Search,
   ClipboardList,
@@ -56,6 +89,18 @@ import {
   Truck,
   Landmark,
   Store,
+  Brain,
+  Lock,
+  Target,
+  Briefcase,
+  Scale,
+  Building2,
+  DollarSign,
+  CreditCard,
+  Hammer,
+  Sprout,
+  Users,
+  MoveRight,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import heroVisual from "@/assets/hero-visual.jpg";
@@ -64,7 +109,6 @@ import projCrm from "@/assets/project-crm.jpg";
 import projHr from "@/assets/project-hr.jpg";
 import projEcom from "@/assets/project-ecom.jpg";
 import projCorp from "@/assets/project-corp.jpg";
-
 export default function IndexRoute() {
   return <Index />;
 }
@@ -310,7 +354,7 @@ function Hero() {
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Newtonix Tech helps businesses streamline operations, win more customers, and
+              Newtonix Technology helps businesses streamline operations, win more customers, and
               accelerate growth through tailored software, mobile apps, and high-performance
               websites.
             </p>
@@ -334,7 +378,7 @@ function Hero() {
           <Reveal delay={300}>
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
               {[
-                { k: "12+", v: "Industries" },
+                { k: "16+", v: "Industries" },
                 { k: "120+", v: "Brands served" },
                 { k: "24h", v: "Response" },
               ].map((s) => (
@@ -378,74 +422,113 @@ function Hero() {
 
 /* ---------------- Logo Marquee ---------------- */
 const brandLogos = [
-  "Bridge Chemie",
-  "Clipping Pixel",
-  "AM Group",
-  "Deen",
-  "Guidance",
-  "Macy's",
-  "Naaptol",
-  "Business Post",
-  "ShareTrip",
-  "AKIJ Resource",
-  "Mercari",
-  "Sakura",
-  "Oakwood",
-  "Hatil",
-  "Apple Gadgets",
+  { name: "Apple Gadgets", imageUrl: "/logos/applegadgets.png" },
+  { name: "ACE Advisory", imageUrl: "/logos/aceadvisory.webp" },
+  { name: "AM Group", imageUrl: "/logos/amGroup.webp" },
+  { name: "BAT Bangladesh", imageUrl: "/logos/bat.webp" },
+  { name: "BG", imageUrl: "/logos/bg.webp" },
+  { name: "Big City", imageUrl: "/logos/bigCity.webp" },
+  { name: "BRAC", imageUrl: "/logos/brac.webp" },
+  { name: "Bridge Chemie", imageUrl: "/logos/bridgeChemie.webp" },
+  { name: "Business Post", imageUrl: "/logos/businessPost.webp" },
+  { name: "ChoreStop", imageUrl: "/logos/choreStop.webp" },
+  { name: "Clipping Pixel", imageUrl: "/logos/clippingPixel.webp" },
+  { name: "CoderTrust", imageUrl: "/logos/coderTrust.webp" },
+  { name: "DBL Ceramics", imageUrl: "/logos/dbl.webp" },
+  { name: "Deen", imageUrl: "/logos/deenlogo.webp" },
+  { name: "Divine IT", imageUrl: "/logos/divineIT.webp" },
+  { name: "Droit", imageUrl: "/logos/droit.webp" },
+  { name: "Ghoori", imageUrl: "/logos/ghoori.webp" },
+  { name: "Ghuri", imageUrl: "/logos/ghuri.webp" },
+  { name: "Guidance", imageUrl: "/logos/guidance.webp" },
+  { name: "Hatil", imageUrl: "/logos/hatil.png" },
+  { name: "Inovi", imageUrl: "/logos/inovi.webp" },
+  { name: "IPS Bazar", imageUrl: "/logos/ips-bazar.webp" },
+  { name: "Naaptol", imageUrl: "/logos/naaptol.webp" },
+  { name: "Nagad", imageUrl: "/logos/nagad.webp" },
+  { name: "NotionHive", imageUrl: "/logos/notionhive.webp" },
+  { name: "OLX", imageUrl: "/logos/olx.webp" },
+  { name: "Padma Bank", imageUrl: "/logos/padmaBank.webp" },
+  { name: "PMAspire", imageUrl: "/logos/pmaspire.webp" },
+  { name: "PrismERP", imageUrl: "/logos/PrismERP.svg" },
+  { name: "Selise", imageUrl: "/logos/selise.webp" },
+  { name: "ShareTrip", imageUrl: "/logos/shareTrip.png" },
+  { name: "Shopoth", imageUrl: "/logos/shopoth.webp" },
+  { name: "Standford", imageUrl: "/logos/standford.webp" },
+  { name: "Star Marcys", imageUrl: "/logos/starMarcys.webp" },
+  { name: "TFO", imageUrl: "/logos/tfo.webp" },
+  { name: "Uniprix", imageUrl: "/logos/uniprix.webp" },
 ];
+
+function MarqueeRow({ items, reverse = false }: { items: typeof brandLogos; reverse?: boolean }) {
+  const row = [...items, ...items];
+  return (
+    <div className="relative mt-4 overflow-hidden">
+      <div
+        className={`flex min-w-full items-center gap-6 py-3 px-2 ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}
+      >
+        {row.map((brand, i) => (
+          <div
+            key={`${brand.name}-${i}`}
+            className="flex h-14 min-w-[120px] items-center justify-center rounded-xl bg-card/30 px-3"
+          >
+            <img
+              src={brand.imageUrl}
+              alt={`${brand.name} logo`}
+              loading="lazy"
+              className="max-h-8 w-auto object-contain opacity-90"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function LogoMarquee() {
-  const row = [...brandLogos, ...brandLogos];
+  const half = Math.ceil(brandLogos.length / 2);
+  const firstRow = brandLogos.slice(0, half);
+  const secondRow = brandLogos.slice(half);
+
   return (
     <section className="relative border-y border-border/60 bg-card/30 py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-          120+ Brands trust the VISER X group
+        <p className="text-center text-sm font-semibold uppercase tracking-[0.24em] text-foreground/90">
+          120+ BRANDS THAT CHOSE US TO GROW
         </p>
-        <div className="relative mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex w-max items-center gap-12 animate-marquee">
-            {row.map((b, i) => (
-              <span
-                key={`${b}-${i}`}
-                className="font-display whitespace-nowrap text-lg font-bold tracking-tight text-muted-foreground/70 hover:text-foreground transition-colors"
-              >
-                {b}
-              </span>
-            ))}
-          </div>
-        </div>
+        <MarqueeRow items={firstRow} />
+        <MarqueeRow items={secondRow} reverse />
       </div>
     </section>
   );
 }
 
 /* ---------------- Services ---------------- */
-type Svc = { icon: typeof Boxes; title: string; desc: string; bullets: string[] };
 
 const webSvcs: Svc[] = [
   {
     icon: Globe,
     title: "Website Development",
-    desc: "High-converting marketing & corporate websites engineered for speed and SEO.",
-    bullets: ["Custom CMS", "SEO-ready", "Mobile-first"],
+    desc: "Stunning, fast, conversion-focused websites built with modern tech and UX best practices.",
+    bullets: ["Responsive design", "SEO optimized", "Fast load times", "Mobile-first"],
   },
   {
-    icon: ShoppingBag,
+    icon: ShoppingCart,
     title: "Ecommerce Website",
-    desc: "Storefronts and marketplaces with smooth checkout and scalable catalog.",
-    bullets: ["Multi-payment", "Inventory sync", "Vendor system"],
+    desc: "Feature-rich online stores with payment gateways, inventory, and customer management.",
+    bullets: ["Product catalog", "Payment integration", "Order management", "Customer portal"],
   },
   {
-    icon: Gauge,
+    icon: Zap,
     title: "Website Speed Optimization",
-    desc: "Make your existing site load in under 2 seconds — Core Web Vitals first.",
-    bullets: ["Core Web Vitals", "Image / cache", "Lighthouse 95+"],
+    desc: "Boost conversions by cutting load times in half. Every millisecond counts.",
+    bullets: ["Performance audit", "Image optimization", "Caching strategies", "CDN setup"],
   },
   {
-    icon: WrenchIcon,
+    icon: Wrench,
     title: "Website Maintenance",
-    desc: "Ongoing security, updates, monitoring and content management you can trust.",
-    bullets: ["Security patches", "Daily backups", "24/7 monitoring"],
+    desc: "Ongoing updates, security patches, backups, and monitoring to keep your site running.",
+    bullets: ["Regular updates", "Security monitoring", "Backup automation", "24/7 support"],
   },
 ];
 
@@ -500,7 +583,134 @@ const softwareSvcs: Svc[] = [
   },
 ];
 
-type Tab = "all" | "web" | "software";
+const aiSvcs: Svc[] = [
+  {
+    icon: Sparkles,
+    title: "AI Chatbots & Conversational AI",
+    desc: "Intelligent chatbots and virtual assistants that handle customer interactions 24/7.",
+    bullets: [
+      "Natural language processing",
+      "Multi-channel deployment",
+      "Customer support automation",
+      "Lead qualification",
+    ],
+  },
+  {
+    icon: Brain,
+    title: "Predictive Analytics & BI",
+    desc: "Data-driven insights that forecast trends, identify opportunities, and optimize decisions.",
+    bullets: [
+      "Predictive modeling",
+      "Business dashboards",
+      "Data visualization",
+      "Anomaly detection",
+    ],
+  },
+  {
+    icon: Lightbulb,
+    title: "Robotic Process Automation",
+    desc: "Automate repetitive tasks and workflows to reduce manual work and human error.",
+    bullets: ["Workflow automation", "Bot development", "Process optimization", "Cost reduction"],
+  },
+];
+
+const qaSvcs: Svc[] = [
+  {
+    icon: CheckCircle2,
+    title: "QA & Testing Services",
+    desc: "Comprehensive testing to ensure reliability, performance, and security across all systems.",
+    bullets: ["Automated testing", "Manual testing", "Regression testing", "Test management"],
+  },
+  {
+    icon: Gauge,
+    title: "Load Testing & Performance",
+    desc: "Stress-test your applications to ensure they scale reliably under peak loads.",
+    bullets: [
+      "Load simulation",
+      "Performance profiling",
+      "Bottleneck analysis",
+      "Optimization recommendations",
+    ],
+  },
+  {
+    icon: Lock,
+    title: "Security Testing & Penetration",
+    desc: "Identify vulnerabilities before attackers do with comprehensive security assessments.",
+    bullets: [
+      "Penetration testing",
+      "Vulnerability scanning",
+      "Security audit",
+      "Compliance check",
+    ],
+  },
+];
+
+const mvpSvcs: Svc[] = [
+  {
+    icon: Rocket,
+    title: "MVP Development",
+    desc: "Fast-track your idea to market with lean, focused development tailored for startups.",
+    bullets: ["Rapid prototyping", "Agile methodology", "User feedback loops", "Quick iteration"],
+  },
+  {
+    icon: Target,
+    title: "Proof of Concept (PoC)",
+    desc: "Validate your concept with a working prototype before full-scale investment.",
+    bullets: ["Concept validation", "Technical feasibility", "Stakeholder demos", "Market testing"],
+  },
+  {
+    icon: Layers,
+    title: "Startup Tech Stack Setup",
+    desc: "Get your startup infrastructure right from day one with battle-tested technology.",
+    bullets: ["Architecture design", "DevOps setup", "Scalable foundation", "Cost-optimized"],
+  },
+];
+
+const devopsSvcs: Svc[] = [
+  {
+    icon: Cloud,
+    title: "Cloud & DevOps Solutions",
+    desc: "Modern infrastructure that scales, deploys fast, and runs reliably 24/7.",
+    bullets: ["Cloud setup", "CI/CD pipelines", "Containerization", "Infrastructure automation"],
+  },
+  {
+    icon: Code,
+    title: "Infrastructure as Code (IaC)",
+    desc: "Version-controlled, repeatable infrastructure deployments with zero manual steps.",
+    bullets: [
+      "Terraform / CloudFormation",
+      "Configuration management",
+      "Environment parity",
+      "Disaster recovery",
+    ],
+  },
+  {
+    icon: Box,
+    title: "Kubernetes & Containers",
+    desc: "Orchestrate and manage containerized applications at scale with Kubernetes.",
+    bullets: ["Kubernetes deployment", "Container orchestration", "Auto-scaling", "Service mesh"],
+  },
+  {
+    icon: MoveRight,
+    title: "Cloud Migration & Transfer",
+    desc: "Seamlessly migrate your applications and data to the cloud with zero downtime.",
+    bullets: [
+      "Data migration",
+      "Legacy system transition",
+      "Zero-downtime deployment",
+      "Cost optimization",
+    ],
+  },
+];
+
+type Tab = "all" | "web" | "software" | "ai" | "qa" | "mvp" | "devops";
+
+interface Svc {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  desc: string;
+  bullets: string[];
+}
 
 function ServiceCard({ icon: Icon, title, desc, bullets }: Svc) {
   return (
@@ -539,6 +749,10 @@ function Services() {
     { id: "all", label: "All Services" },
     { id: "web", label: "Web Development" },
     { id: "software", label: "Software Solutions" },
+    { id: "ai", label: "AI & Automation" },
+    { id: "qa", label: "QA & Testing" },
+    { id: "mvp", label: "MVP Development" },
+    { id: "devops", label: "Cloud & DevOps" },
   ];
 
   return (
@@ -618,6 +832,90 @@ function Services() {
             </div>
           </>
         )}
+
+        {(tab === "all" || tab === "ai") && (
+          <>
+            <Reveal delay={80}>
+              <div className="mt-16 flex items-center gap-3">
+                <span className="h-px flex-1 bg-border" />
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                  AI & Automation
+                </span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+            </Reveal>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {aiSvcs.map((s, i) => (
+                <Reveal key={s.title} delay={i * 50}>
+                  <ServiceCard {...s} />
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+
+        {(tab === "all" || tab === "qa") && (
+          <>
+            <Reveal delay={80}>
+              <div className="mt-16 flex items-center gap-3">
+                <span className="h-px flex-1 bg-border" />
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                  QA & Testing
+                </span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+            </Reveal>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {qaSvcs.map((s, i) => (
+                <Reveal key={s.title} delay={i * 50}>
+                  <ServiceCard {...s} />
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+
+        {(tab === "all" || tab === "mvp") && (
+          <>
+            <Reveal delay={80}>
+              <div className="mt-16 flex items-center gap-3">
+                <span className="h-px flex-1 bg-border" />
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                  MVP Development
+                </span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+            </Reveal>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {mvpSvcs.map((s, i) => (
+                <Reveal key={s.title} delay={i * 50}>
+                  <ServiceCard {...s} />
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+
+        {(tab === "all" || tab === "devops") && (
+          <>
+            <Reveal delay={80}>
+              <div className="mt-16 flex items-center gap-3">
+                <span className="h-px flex-1 bg-border" />
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                  Cloud & DevOps
+                </span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+            </Reveal>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {devopsSvcs.map((s, i) => (
+                <Reveal key={s.title} delay={i * 50}>
+                  <ServiceCard {...s} />
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
@@ -632,7 +930,15 @@ const industries = [
   { icon: GraduationCap, label: "Education" },
   { icon: Truck, label: "Logistics" },
   { icon: Landmark, label: "Financial Services" },
-  { icon: Boxes, label: "Distribution" },
+  { icon: Briefcase, label: "Distribution" },
+  { icon: Scale, label: "Legal Services" },
+  { icon: Building2, label: "Public Sector" },
+  { icon: DollarSign, label: "Government" },
+  { icon: CreditCard, label: "FinTech" },
+  { icon: Hammer, label: "Construction" },
+  { icon: Sprout, label: "Agriculture" },
+  { icon: Users, label: "Professional Services" },
+  { icon: Wrench, label: "Automotive" },
 ];
 
 function Industries() {
@@ -723,8 +1029,8 @@ function Stats() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Stat value={120} suffix="+" label="Brands served" />
           <Stat value={250} suffix="+" label="Projects delivered" />
-          <Stat value={12} suffix="+" label="Industries" />
-          <Stat value={10} suffix="M+" label="Revenue driven (USD)" />
+          <Stat value={16} suffix="+" label="Industries" />
+          <Stat value={96} suffix="%" label="Positive reviews" />
         </div>
       </div>
     </section>
@@ -776,7 +1082,7 @@ function WhyUs() {
               Why Us
             </p>
             <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
-              Why Businesses Choose <span className="text-gradient">Newtonix Tech</span>
+              Why Businesses Choose <span className="text-gradient">Newtonix Technology</span>
             </h2>
           </div>
         </Reveal>
@@ -799,13 +1105,78 @@ function WhyUs() {
 }
 
 /* ---------------- Tech Stack ---------------- */
-const techGroups: { label: string; items: string[] }[] = [
-  { label: "Frontend", items: ["React", "Next.js", "Vue.js", "Flutter"] },
-  { label: "Backend", items: ["Laravel", "Node.js", "PHP", "Python"] },
-  { label: "Database", items: ["MySQL", "PostgreSQL", "MongoDB"] },
-  { label: "Cloud & DevOps", items: ["AWS", "DigitalOcean", "Cloudflare", "Docker"] },
-];
 
+const techGroups: {
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  items: { name: string; logo: React.ComponentType<{ className?: string }> }[];
+}[] = [
+  {
+    label: "Frontend",
+    icon: Code,
+    items: [
+      { name: "React", logo: FaReact },
+      { name: "Next.js", logo: FaReact },
+      { name: "Vue.js", logo: FaVuejs },
+      { name: "TypeScript", logo: FaJsSquare },
+      { name: "Tailwind", logo: FaCss3Alt },
+      { name: "Flutter", logo: FaMobile },
+    ],
+  },
+  {
+    label: "Backend",
+    icon: Server,
+    items: [
+      { name: "Node.js", logo: FaNode },
+      { name: "Laravel", logo: FaLaravel },
+      { name: "PHP", logo: FaPhp },
+      { name: "Python", logo: FaPython },
+      { name: "Django", logo: FaServer },
+    ],
+  },
+  {
+    label: "Database",
+    icon: Database,
+    items: [
+      { name: "PostgreSQL", logo: FaDatabase },
+      { name: "MySQL", logo: FaDatabase },
+      { name: "MongoDB", logo: FaLeaf },
+      { name: "Redis", logo: FaBox },
+    ],
+  },
+  {
+    label: "Cloud & DevOps",
+    icon: Cloud,
+    items: [
+      { name: "AWS", logo: FaAws },
+      { name: "Google Cloud", logo: FaGoogle },
+      { name: "Azure", logo: FaMicrosoft },
+      { name: "Docker", logo: FaDocker },
+      { name: "Kubernetes", logo: FaBox },
+    ],
+  },
+  {
+    label: "CMS & E-commerce",
+    icon: ShoppingCart,
+    items: [
+      { name: "WordPress", logo: FaWordpress },
+      { name: "WooCommerce", logo: FaShopify },
+      { name: "Shopify", logo: FaShopify },
+    ],
+  },
+  {
+    label: "Tools & Platforms",
+    icon: Wrench,
+    items: [
+      { name: "Git", logo: FaGit },
+      { name: "GitHub", logo: FaGithub },
+      { name: "GitLab", logo: FaGitlab },
+      { name: "Jira", logo: FaJira },
+      { name: "Figma", logo: FaFigma },
+      { name: "VS Code", logo: FaBox },
+    ],
+  },
+];
 function TechStack() {
   return (
     <section id="tech" className="relative py-20 sm:py-28">
@@ -819,32 +1190,51 @@ function TechStack() {
               Technologies <span className="text-gradient">We Use</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
-              A modern, battle-tested stack chosen for performance, longevity and developer
+              A modern, battle-tested stack chosen for performance, scalability, and developer
               velocity.
             </p>
           </div>
         </Reveal>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {techGroups.map((g, i) => (
-            <Reveal key={g.label} delay={i * 70}>
-              <div className="h-full rounded-2xl glass p-6">
-                <div className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                  {g.label}
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {techGroups.map((g, i) => {
+            const IconComponent = g.icon;
+            return (
+              <Reveal key={g.label} delay={i * 70}>
+                <div className="group relative h-full overflow-hidden rounded-2xl glass p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-elegant">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
+                    style={{
+                      background:
+                        "radial-gradient(60% 80% at 0% 0%, color-mix(in oklab, var(--color-brand) 18%, transparent), transparent 60%)",
+                    }}
+                  />
+                  <div className="relative">
+                    <div className="flex items-center gap-3">
+                      <div className="grid h-10 w-10 place-items-center rounded-lg brand-gradient text-white shadow-glow">
+                        <IconComponent className="h-5 w-5" />
+                      </div>
+                      <h3 className="font-display text-lg font-bold tracking-tight">{g.label}</h3>
+                    </div>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {g.items.map((t) => {
+                        const LogoIcon = t.logo;
+                        return (
+                          <div
+                            key={t.name}
+                            title={t.name}
+                            className="h-10 w-10 rounded-lg border border-border bg-card/40 p-2 backdrop-blur hover:scale-110 transition-all cursor-pointer"
+                          >
+                            <LogoIcon className="h-full w-full text-muted-foreground hover:text-[color:var(--color-brand)]" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {g.items.map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--glass-border)] bg-card/60 px-3 py-1.5 text-sm font-medium backdrop-blur transition-colors hover:border-[color:var(--color-brand)]/60 hover:text-[color:var(--color-brand)]"
-                    >
-                      <span className="grid h-1.5 w-1.5 place-items-center rounded-full bg-[color:var(--color-brand)]" />
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1041,8 +1431,8 @@ function SisterBrand() {
                   Backed by a $10M+ revenue-driven agency.
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Newtonix Tech is the software & engineering arm of VISER X — a Clutch 5.0 rated
-                  growth partner trusted by 120+ brands. You get startup speed with enterprise
+                  Newtonix Technology is the software & engineering arm of VISER X — a Clutch 5.0
+                  rated growth partner trusted by 120+ brands. You get startup speed with enterprise
                   pedigree.
                 </p>
               </div>
@@ -1074,23 +1464,39 @@ function SisterBrand() {
 const faqs = [
   {
     q: "What industries do you serve?",
-    a: "We work across manufacturing, retail, e-commerce, education, healthcare, logistics, financial services, and professional services.",
+    a: "We work across manufacturing, retail, e-commerce, education, healthcare, logistics, financial services, government, construction, and professional services.",
   },
   {
     q: "How long does a software project take?",
     a: "Most custom solutions take 8–16 weeks from kickoff to launch, depending on scope. We deliver in two-week sprints so you see working software early and often.",
   },
   {
-    q: "Do you provide post-launch support?",
-    a: "Yes. Every engagement includes warranty support, and we offer SLA-backed maintenance, monitoring, and continuous improvement plans.",
-  },
-  {
     q: "Can you develop custom business software?",
     a: "Absolutely — custom ERP, CRM, HR, payroll, accounting, mobile apps, and bespoke internal tools are our core. We build around your processes, not a template.",
   },
   {
+    q: "Do you provide post-launch support?",
+    a: "Yes. Every engagement includes warranty support, and we offer SLA-backed maintenance, monitoring, and continuous improvement plans.",
+  },
+  {
+    q: "What are your payment terms?",
+    a: "We offer flexible options: 50% upfront deposit, 50% on delivery for fixed-scope projects. For ongoing retainers, we bill monthly in advance.",
+  },
+  {
+    q: "Do you accept installment payments?",
+    a: "Yes. We can structure payments across project milestones — typically 25% at kickoff, 25% at mid-phase, 25% at beta, 25% at final delivery.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "We accept bank transfers (ACH, SWIFT), credit cards, PayPal, and cryptocurrency (Bitcoin, Ethereum) for international clients.",
+  },
+  {
     q: "Do you work with international clients?",
     a: "Yes. We work remotely with clients across Asia, the Middle East, Europe, and North America with overlapping working hours and async-friendly processes.",
+  },
+  {
+    q: "What happens if the project goes over budget?",
+    a: "We provide detailed quotes with scope boundaries. If requirements expand, we discuss changes transparently and adjust timelines and costs accordingly before proceeding.",
   },
   {
     q: "How do we get started?",
@@ -1149,6 +1555,10 @@ const serviceOptions = [
   "Accounts & Finance",
   "Payroll",
   "Mobile App",
+  "AI & Automation Solutions",
+  "QA & Testing Services",
+  "MVP Development",
+  "Cloud & DevOps Solutions",
   "Other",
 ];
 
@@ -1160,11 +1570,15 @@ function Contact() {
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
+    const phone = String(fd.get("phone") ?? "").trim();
     const details = String(fd.get("details") ?? "").trim();
+    const phoneDigits = phone.replace(/\D/g, "");
 
     if (!name || name.length > 100) return toast.error("Please enter your name.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
       return toast.error("Please enter a valid email.");
+    if (!phoneDigits || phoneDigits.length < 10 || phoneDigits.length > 20)
+      return toast.error("Please enter a valid phone number with 10 to 20 digits.");
     if (!details || details.length > 2000)
       return toast.error("Please share a few words about your project.");
 
@@ -1172,14 +1586,15 @@ function Contact() {
     setTimeout(() => {
       setSubmitting(false);
       toast.success("Request received. We'll get back to you within 24 hours.");
+      console.log({ phone: phoneDigits });
       (e.target as HTMLFormElement).reset();
     }, 600);
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-20 sm:py-28">
+    <section id="contact" className="relative overflow-visible py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-0 gradient-mesh opacity-70" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 items-stretch overflow-visible">
         <Reveal>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
@@ -1218,6 +1633,24 @@ function Contact() {
                     Phone
                   </div>
                   <a
+                    href="tel:+1(307)393-8955
+
+"
+                    className="block text-sm font-medium hover:text-[color:var(--color-brand)]"
+                  >
+                    +1 (307) 393-8955
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Phone
+                  </div>
+                  <a
                     href="tel:+8801842088100"
                     className="block text-sm font-medium hover:text-[color:var(--color-brand)]"
                   >
@@ -1231,7 +1664,22 @@ function Contact() {
                 </span>
                 <div className="min-w-0">
                   <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Address
+                    US Address
+                  </div>
+                  <p className="text-sm font-medium leading-relaxed">
+                    30 N Gould St STE R Sheridan,
+                    <br />
+                    WY 82801, USA{" "}
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Bangladesh Address
                   </div>
                   <p className="text-sm font-medium leading-relaxed">
                     Plot 06, Road 02, Sector 11,
@@ -1284,7 +1732,14 @@ function Contact() {
                 required
                 maxLength={255}
               />
-              <Field label="Phone Number" name="phone" placeholder="+880 …" maxLength={30} />
+              <Field
+                label="Phone Number"
+                name="phone"
+                type="tel"
+                placeholder="1234567890"
+                required
+                maxLength={20}
+              />
               <div className="sm:col-span-2">
                 <Label
                   htmlFor="service"
@@ -1454,20 +1909,46 @@ function Footer() {
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
-                <a href="tel:+8801842088100" className="hover:text-foreground">
-                  +88 018-42088100
-                </a>
+                <div className="space-y-1">
+                  <a href="tel:+1 (307) 393-8955" className="block hover:text-foreground">
+                    +1 (307) 393-8955
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
+                <div className="space-y-1">
+                  <a
+                    href="tel:+8801842088100"
+                    className="block text-sm text-muted-foreground hover:text-foreground"
+                  >
+                    +88 018-42088100
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
-                <span>Plot 06, Road 02, Sector 11, Uttara, Dhaka-1230, Bangladesh</span>
+                <div className="space-y-1 text-sm">
+                  <span className="mb-4">
+                    30 N Gould St STE R Sheridan, <br /> WY 82801, USA
+                  </span>
+                </div>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
+                <div className="space-y-1 text-sm">
+                  <span className="text-muted-foreground">
+                    House 32, Road 4, Sector 9, <br />
+                    Uttara, Dhaka-1230, Bangladesh
+                  </span>
+                </div>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <p>© 2026 Newtonix Tech. A sister concern of VISER X. All rights reserved.</p>
+          <p>© 2026 Newtonix Technology | All Rights Reserved.</p>
           <p>Engineered with precision in Dhaka.</p>
         </div>
       </div>

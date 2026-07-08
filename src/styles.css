@@ -54,7 +54,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.04 260);
 
-  --primary: oklch(0.21 0.04 260);            /* #0A2540 */
+  --primary: oklch(0.21 0.04 260); /* #0A2540 */
   --primary-foreground: oklch(0.99 0.005 240);
   --secondary: oklch(0.96 0.012 250);
   --secondary-foreground: oklch(0.21 0.04 260);
@@ -68,23 +68,41 @@
   --input: oklch(0.92 0.012 250);
   --ring: oklch(0.58 0.18 255);
 
-  --brand: oklch(0.60 0.22 260);              /* VISER X electric blue ~ #2F6BFF */
+  --brand: oklch(0.6 0.22 260); /* VISER X electric blue ~ #2F6BFF */
   --brand-foreground: oklch(0.99 0 0);
-  --glow: oklch(0.74 0.16 245);               /* lighter cyan-blue accent */
+  --glow: oklch(0.74 0.16 245); /* lighter cyan-blue accent */
   --surface: oklch(0.985 0.006 240);
   --surface-elevated: oklch(1 0 0);
   --hairline: oklch(0.9 0.012 250);
 
   --gradient-mesh:
-    radial-gradient(60% 50% at 15% 10%, color-mix(in oklab, var(--glow) 22%, transparent), transparent 70%),
-    radial-gradient(50% 40% at 85% 0%, color-mix(in oklab, var(--brand) 18%, transparent), transparent 70%),
-    radial-gradient(70% 60% at 50% 100%, color-mix(in oklab, var(--brand) 15%, transparent), transparent 70%);
+    radial-gradient(
+      60% 50% at 15% 10%,
+      color-mix(in oklab, var(--glow) 22%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 40% at 85% 0%,
+      color-mix(in oklab, var(--brand) 18%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      70% 60% at 50% 100%,
+      color-mix(in oklab, var(--brand) 15%, transparent),
+      transparent 70%
+    );
   --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--glow) 100%);
-  --gradient-text: linear-gradient(135deg, var(--foreground) 0%, color-mix(in oklab, var(--brand) 70%, var(--foreground)) 100%);
+  --gradient-text: linear-gradient(
+    135deg,
+    var(--foreground) 0%,
+    color-mix(in oklab, var(--brand) 70%, var(--foreground)) 100%
+  );
 
   --shadow-elegant: 0 10px 40px -10px color-mix(in oklab, var(--brand) 25%, transparent);
   --shadow-glow: 0 0 60px -10px color-mix(in oklab, var(--glow) 50%, transparent);
-  --shadow-card: 0 1px 0 0 color-mix(in oklab, var(--foreground) 4%, transparent), 0 8px 24px -12px color-mix(in oklab, var(--foreground) 15%, transparent);
+  --shadow-card:
+    0 1px 0 0 color-mix(in oklab, var(--foreground) 4%, transparent),
+    0 8px 24px -12px color-mix(in oklab, var(--foreground) 15%, transparent);
 
   --glass-bg: color-mix(in oklab, var(--card) 70%, transparent);
   --glass-border: color-mix(in oklab, var(--foreground) 8%, transparent);
@@ -92,14 +110,14 @@
 
 .dark {
   /* Dark theme — deep navy + electric blue */
-  --background: oklch(0.14 0.035 260);        /* #060F1E */
+  --background: oklch(0.14 0.035 260); /* #060F1E */
   --foreground: oklch(0.97 0.005 240);
   --card: oklch(0.19 0.04 262);
   --card-foreground: oklch(0.97 0.005 240);
   --popover: oklch(0.18 0.04 262);
   --popover-foreground: oklch(0.97 0.005 240);
 
-  --primary: oklch(0.78 0.14 230);            /* glow as primary in dark */
+  --primary: oklch(0.78 0.14 230); /* glow as primary in dark */
   --primary-foreground: oklch(0.14 0.035 260);
   --secondary: oklch(0.24 0.045 262);
   --secondary-foreground: oklch(0.97 0.005 240);
@@ -117,27 +135,44 @@
   --brand-foreground: oklch(0.99 0 0);
   --glow: oklch(0.78 0.16 230);
   --surface: oklch(0.16 0.038 261);
-  --surface-elevated: oklch(0.20 0.04 262);
+  --surface-elevated: oklch(0.2 0.04 262);
   --hairline: oklch(1 0 0 / 10%);
 
   --gradient-mesh:
-    radial-gradient(55% 45% at 12% 8%, color-mix(in oklab, var(--glow) 25%, transparent), transparent 70%),
-    radial-gradient(55% 45% at 88% 5%, color-mix(in oklab, var(--brand) 35%, transparent), transparent 70%),
-    radial-gradient(70% 55% at 50% 110%, color-mix(in oklab, var(--brand) 30%, transparent), transparent 70%);
+    radial-gradient(
+      55% 45% at 12% 8%,
+      color-mix(in oklab, var(--glow) 25%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 45% at 88% 5%,
+      color-mix(in oklab, var(--brand) 35%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      70% 55% at 50% 110%,
+      color-mix(in oklab, var(--brand) 30%, transparent),
+      transparent 70%
+    );
   --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--glow) 100%);
   --gradient-text: linear-gradient(135deg, var(--foreground) 0%, var(--glow) 100%);
 
   --shadow-elegant: 0 10px 50px -10px color-mix(in oklab, var(--brand) 50%, transparent);
   --shadow-glow: 0 0 80px -10px color-mix(in oklab, var(--glow) 60%, transparent);
-  --shadow-card: 0 1px 0 0 color-mix(in oklab, var(--glow) 5%, transparent), 0 20px 40px -20px oklch(0 0 0 / 50%);
+  --shadow-card:
+    0 1px 0 0 color-mix(in oklab, var(--glow) 5%, transparent), 0 20px 40px -20px oklch(0 0 0 / 50%);
 
   --glass-bg: color-mix(in oklab, var(--card) 55%, transparent);
   --glass-border: color-mix(in oklab, var(--glow) 18%, transparent);
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -145,14 +180,23 @@
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  h1, h2, h3, h4, .font-display {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
-  ::selection { background: color-mix(in oklab, var(--brand) 35%, transparent); }
+  ::selection {
+    background: color-mix(in oklab, var(--brand) 35%, transparent);
+  }
 }
 
-@utility font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
 
 @utility btn-pill {
   display: inline-flex;
@@ -165,14 +209,29 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
-@utility animate-marquee { animation: marquee 35s linear infinite; }
+@utility animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+@utility animate-marquee-reverse {
+  animation: marquee 20s linear infinite reverse;
+}
 
 @keyframes count-pop {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @utility glass {
@@ -196,31 +255,63 @@
   background: var(--gradient-brand);
 }
 
-@utility shadow-elegant { box-shadow: var(--shadow-elegant); }
-@utility shadow-glow { box-shadow: var(--shadow-glow); }
-@utility shadow-card { box-shadow: var(--shadow-card); }
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
 
 @utility hairline-border {
   border: 1px solid var(--color-hairline);
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -14px, 0); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
 }
 @keyframes mesh-drift {
-  0%, 100% { transform: translate3d(0,0,0) scale(1); }
-  50% { transform: translate3d(2%, -2%, 0) scale(1.05); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.05);
+  }
 }
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-@utility animate-float { animation: float-slow 7s ease-in-out infinite; }
-@utility animate-mesh { animation: mesh-drift 18s ease-in-out infinite; }
-@utility animate-reveal { animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@utility animate-float {
+  animation: float-slow 7s ease-in-out infinite;
+}
+@utility animate-mesh {
+  animation: mesh-drift 18s ease-in-out infinite;
+}
+@utility animate-reveal {
+  animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
