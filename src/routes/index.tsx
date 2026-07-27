@@ -117,6 +117,7 @@ const navItems = [
   { label: "Services", href: "#services" },
   { label: "Industries", href: "#industries" },
   { label: "Why Us", href: "#why" },
+  { label: "Technology", href: "#technology" },
   { label: "Process", href: "#process" },
   { label: "Portfolio", href: "#portfolio" },
   { label: "FAQ", href: "#faq" },
@@ -247,17 +248,13 @@ function Navbar() {
           : "bg-background/60 backdrop-blur border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between py-2 gap-4 px-4  sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-2.5 shrink-0">
-          <span className="grid h-9 w-9 place-items-center rounded-lg brand-gradient shadow-glow">
-            <span className="text-sm font-black text-white">N</span>
-          </span>
-          <span className="font-display text-base font-extrabold tracking-tight">
-            Newtonix Technology
-          </span>
-          {/* <span className="font-display text-base font-extrabold tracking-tight">
-            Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
-          </span> */}
+          <img
+            src={theme === "dark" ? "/white-logo.png" : "/logo.png"}
+            alt="Newtonix Tech Logo"
+            className="logo-navbar w-auto"
+          />
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -744,7 +741,7 @@ function ServiceCard({ icon: Icon, title, desc, bullets }: Svc) {
 }
 
 function Services() {
-  const [tab, setTab] = useState<Tab>("all");
+  const [tab, setTab] = useState<Tab>("web");
   const tabs: { id: Tab; label: string }[] = [
     { id: "all", label: "All Services" },
     { id: "web", label: "Web Development" },
@@ -1179,7 +1176,7 @@ const techGroups: {
 ];
 function TechStack() {
   return (
-    <section id="tech" className="relative py-20 sm:py-28">
+    <section id="technology" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -1507,7 +1504,7 @@ const faqs = [
 function Faq() {
   return (
     <section id="faq" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
@@ -1519,22 +1516,26 @@ function Faq() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <Accordion type="single" collapsible className="mt-12 space-y-3">
-            {faqs.map((f, i) => (
-              <AccordionItem
-                key={f.q}
-                value={`item-${i}`}
-                className="overflow-hidden rounded-xl glass border-b-0 px-5 data-[state=open]:shadow-elegant"
-              >
-                <AccordionTrigger className="font-display py-5 text-left text-base font-bold hover:no-underline">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {[faqs.slice(0, 5), faqs.slice(5)].map((col, colIdx) => (
+              <Accordion key={colIdx} type="single" collapsible className="space-y-3">
+                {col.map((f, i) => (
+                  <AccordionItem
+                    key={f.q}
+                    value={`item-${colIdx}-${i}`}
+                    className="overflow-hidden rounded-xl glass border-b-0 px-5 data-[state=open]:shadow-elegant"
+                  >
+                    <AccordionTrigger className="font-display py-5 text-left text-base font-bold hover:no-underline">
+                      {f.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             ))}
-          </Accordion>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -1644,6 +1645,21 @@ function Contact() {
               </li>
               <li className="flex items-start gap-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    US Address
+                  </div>
+                  <p className="text-sm font-medium leading-relaxed">
+                    30 N Gould St STE R Sheridan,
+                    <br />
+                    WY 82801, USA{" "}
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
                   <Phone className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
@@ -1658,21 +1674,7 @@ function Contact() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-4">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
-                  <MapPin className="h-4 w-4" />
-                </span>
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    US Address
-                  </div>
-                  <p className="text-sm font-medium leading-relaxed">
-                    30 N Gould St STE R Sheridan,
-                    <br />
-                    WY 82801, USA{" "}
-                  </p>
-                </div>
-              </li>
+
               <li className="flex items-start gap-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
                   <MapPin className="h-4 w-4" />
@@ -1839,21 +1841,18 @@ function Field({
 
 /* ---------------- Footer ---------------- */
 function Footer() {
+  const { theme } = useTheme();
   return (
     <footer className="relative border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-lg brand-gradient shadow-glow">
-                <span className="text-sm font-black text-white">N</span>
-              </span>
-              <span className="font-display text-base font-extrabold tracking-tight">
-                Newtonix Technology
-              </span>
-              {/* <span className="font-display text-base font-extrabold tracking-tight">
-                Newtonix<span className="text-[color:var(--color-brand)]">.</span>Tech
-              </span> */}
+              <img
+                src={theme === "dark" ? "/white-logo.png" : "/logo.png"}
+                alt="Newtonix Tech Logo"
+                className="logo-navbar w-auto"
+              />
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Custom Software & Web Solutions for Modern Businesses.
@@ -1916,6 +1915,14 @@ function Footer() {
                 </div>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
+                <div className="space-y-1 text-sm">
+                  <span className="mb-4">
+                    30 N Gould St STE R Sheridan, <br /> WY 82801, USA
+                  </span>
+                </div>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
                 <div className="space-y-1">
                   <a
@@ -1926,14 +1933,7 @@ function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
-                <div className="space-y-1 text-sm">
-                  <span className="mb-4">
-                    30 N Gould St STE R Sheridan, <br /> WY 82801, USA
-                  </span>
-                </div>
-              </li>
+
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
                 <div className="space-y-1 text-sm">
