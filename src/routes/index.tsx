@@ -103,11 +103,12 @@ import {
   MoveRight,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
-import heroVisual from "@/assets/hero-visual.jpg";
+import heroVisual from "@/assets/Newtonix TEAM.webp";
 import projErp from "@/assets/project-erp.jpg";
 import projCrm from "@/assets/project-crm.jpg";
 import projHr from "@/assets/project-hr.jpg";
 import projEcom from "@/assets/project-ecom.jpg";
+import { PhoneNumberInput, type Country } from "@/components/phone-number-input";
 import projCorp from "@/assets/project-corp.jpg";
 export default function IndexRoute() {
   return <Index />;
@@ -199,17 +200,19 @@ function TopBar() {
     <div className="relative z-50 brand-gradient text-white">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-2 text-xs sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 font-medium">
-          <span className="hidden sm:inline opacity-80">Proud sister concern of</span>
-          <a
+          <span className="hidden sm:inline opacity-80">
+            Empowering Businesses with AI-Driven Software
+          </span>
+          {/* <a
             href="https://viserx.com"
             target="_blank"
             rel="noreferrer"
             className="font-bold tracking-wide hover:underline"
           >
             VISER X
-          </a>
-          <span className="hidden md:inline opacity-60">•</span>
-          <span className="hidden md:inline opacity-90">Engineering revenue-driven software</span>
+          </a> */}
+          {/* <span className="hidden md:inline opacity-60">•</span>
+          <span className="hidden md:inline opacity-90">Engineering revenue-driven software</span> */}
         </div>
         <div className="flex items-center gap-4 font-medium">
           <a href="tel:+8801842088100" className="inline-flex items-center gap-1.5 hover:underline">
@@ -401,14 +404,14 @@ function Hero() {
                 height={1280}
                 className="aspect-square w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl glass px-4 py-3">
                 <div className="flex items-center gap-2 text-xs font-medium">
                   <span className="grid h-2 w-2 place-items-center rounded-full bg-emerald-400 shadow-[0_0_10px_oklch(0.78_0.16_150)]" />
                   Engineering at scale
                 </div>
                 <span className="text-[10px] text-muted-foreground">v2026.1</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </Reveal>
@@ -1564,6 +1567,9 @@ const serviceOptions = [
 ];
 
 function Contact() {
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [phoneDigits, setPhoneDigits] = useState("");
+
   const [submitting, setSubmitting] = useState(false);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -1571,9 +1577,11 @@ function Contact() {
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
-    const phone = String(fd.get("phone") ?? "").trim();
     const details = String(fd.get("details") ?? "").trim();
-    const phoneDigits = phone.replace(/\D/g, "");
+    // const phone = String(fd.get("phone") ?? "").trim();
+    // const phoneDigits = phone.replace(/\D/g, "");
+    const phoneDigitsValue = phoneDigits;
+    const fullPhone = `${selectedCountry?.dialCode ?? "+880"}${phoneDigitsValue}`;
 
     if (!name || name.length > 100) return toast.error("Please enter your name.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
@@ -1587,7 +1595,8 @@ function Contact() {
     setTimeout(() => {
       setSubmitting(false);
       toast.success("Request received. We'll get back to you within 24 hours.");
-      console.log({ phone: phoneDigits });
+      // console.log({ phone: phoneDigits });
+      console.log({ phone: fullPhone });
       (e.target as HTMLFormElement).reset();
     }, 600);
   };
@@ -1734,13 +1743,11 @@ function Contact() {
                 required
                 maxLength={255}
               />
-              <Field
-                label="Phone Number"
-                name="phone"
-                type="tel"
-                placeholder="1234567890"
+              
+              <PhoneNumberInput
                 required
-                maxLength={20}
+                onCountryChange={setSelectedCountry}
+                onPhoneChange={setPhoneDigits}
               />
               <div className="sm:col-span-2">
                 <Label
@@ -1948,8 +1955,8 @@ function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <p>© 2026 Newtonix Technology | All Rights Reserved.</p>
-          <p>Engineered with precision in Dhaka.</p>
+          <p>© 2026 Newtonix Technology | All Rights Reserved</p>
+          <p>Proudly brought to you by VISER X</p>
         </div>
       </div>
     </footer>
