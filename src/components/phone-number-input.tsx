@@ -318,12 +318,12 @@ export function PhoneNumberInput({
             className="flex w-20 shrink-0 items-center justify-center gap-1 rounded-lg border border-border bg-card/40 px-2 py-2.5 text-sm text-foreground backdrop-blur transition-colors focus:border-[color:var(--color-brand)] focus:outline-none"
           >
             <img
-  src={`/node_modules/country-flag-icons/3x2/${country.code}.svg`}
-  alt={country.name}
-  className="h-4 w-6 shrink-0 object-cover"
-/>
+              src={`/node_modules/country-flag-icons/3x2/${country.code}.svg`}
+              alt={country.name}
+              className="h-4 w-6 shrink-0 object-cover"
+            />
 
-            <span className="truncate font-medium">{country.code}</span>
+            {/* <span className="truncate font-medium">{country.code}</span> */}
 
             <ChevronDown
               className={`h-3.5 w-3.5 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
@@ -380,6 +380,11 @@ export function PhoneNumberInput({
                       country.code === item.code ? "bg-accent" : ""
                     }`}
                   >
+                    <img
+                      src={`/node_modules/country-flag-icons/3x2/${item.code}.svg`}
+                      alt={country.name}
+                      className="h-4 w-6 shrink-0 object-cover"
+                    />
                     <span
                       className={`fi fi-${item.code.toLowerCase()} h-4 w-6 shrink-0`}
                       aria-label={item.name}
