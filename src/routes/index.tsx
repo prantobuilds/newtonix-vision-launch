@@ -470,7 +470,7 @@ function MarqueeRow({ items, reverse = false }: { items: typeof brandLogos; reve
         {row.map((brand, i) => (
           <div
             key={`${brand.name}-${i}`}
-            className="flex h-14 min-w-[120px] items-center justify-center rounded-xl bg-card/30 px-3"
+            className="flex h-14 min-w-[120px] items-center justify-center rounded-xl bg-card/30 px-3 dark:bg-white"
           >
             <img
               src={brand.imageUrl}
@@ -1743,7 +1743,7 @@ function Contact() {
                 required
                 maxLength={255}
               />
-              
+
               <PhoneNumberInput
                 required
                 onCountryChange={setSelectedCountry}
