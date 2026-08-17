@@ -19,12 +19,11 @@ import {
   FaPython,
   FaServer,
   FaDatabase,
-  FaJsSquare,
   FaAws,
   FaGoogle,
-  FaMicrosoft,
   FaDocker,
   FaWordpress,
+  FaMicrosoft,
   FaShopify,
   FaGit,
   FaGithub,
@@ -32,11 +31,25 @@ import {
   FaJira,
   FaFigma,
   FaVuejs,
-  FaCss3Alt,
   FaMobile,
   FaLeaf,
   FaBox,
+  FaPinterest,
 } from "react-icons/fa";
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiFlutter,
+  SiDjango,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiRedis,
+  SiJoomla,
+  SiDrupal,
+  SiWoocommerce,
+} from "react-icons/si";
 import {
   Boxes,
   Server,
@@ -74,6 +87,7 @@ import {
   Star,
   Linkedin,
   Facebook,
+  Instagram,
   Github,
   ChevronRight,
   ChevronDown,
@@ -102,6 +116,7 @@ import {
   Users,
   MoveRight,
 } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import { useTheme } from "@/components/theme-provider";
 import heroVisual from "@/assets/Newtonix TEAM.webp";
 import projErp from "@/assets/project-erp.jpg";
@@ -110,6 +125,7 @@ import projHr from "@/assets/project-hr.jpg";
 import projEcom from "@/assets/project-ecom.jpg";
 import { PhoneNumberInput, type Country } from "@/components/phone-number-input";
 import projCorp from "@/assets/project-corp.jpg";
+import { submitContactForm } from "@/lib/contact";
 export default function IndexRoute() {
   return <Index />;
 }
@@ -703,6 +719,15 @@ const devopsSvcs: Svc[] = [
   },
 ];
 
+const allServices: Array<Svc & { category: string }> = [
+  ...webSvcs.map((service) => ({ ...service, category: "Web Development" })),
+  ...softwareSvcs.map((service) => ({ ...service, category: "Software Solutions" })),
+  ...aiSvcs.map((service) => ({ ...service, category: "AI & Automation" })),
+  ...qaSvcs.map((service) => ({ ...service, category: "QA & Testing" })),
+  ...mvpSvcs.map((service) => ({ ...service, category: "MVP Development" })),
+  ...devopsSvcs.map((service) => ({ ...service, category: "Cloud & DevOps" })),
+];
+
 type Tab = "all" | "web" | "software" | "ai" | "qa" | "mvp" | "devops";
 
 interface Svc {
@@ -745,6 +770,7 @@ function ServiceCard({ icon: Icon, title, desc, bullets }: Svc) {
 
 function Services() {
   const [tab, setTab] = useState<Tab>("web");
+  const [visibleAllCount, setVisibleAllCount] = useState(8);
   const tabs: { id: Tab; label: string }[] = [
     { id: "all", label: "All Services" },
     { id: "web", label: "Web Development" },
@@ -754,6 +780,13 @@ function Services() {
     { id: "mvp", label: "MVP Development" },
     { id: "devops", label: "Cloud & DevOps" },
   ];
+
+  useEffect(() => {
+    if (tab !== "all") return;
+    setVisibleAllCount(8);
+  }, [tab]);
+
+  const visibleAllServices = allServices.slice(0, visibleAllCount);
 
   return (
     <section id="services" className="relative py-20 sm:py-28">
@@ -791,129 +824,167 @@ function Services() {
           </div>
         </Reveal>
 
-        {(tab === "all" || tab === "web") && (
+        {tab === "all" ? (
           <>
-            <Reveal delay={80}>
-              <div className="mt-12 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
-                  Web Development
-                </span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {webSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}>
-                  <ServiceCard {...s} />
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {visibleAllServices.map((service, index) => (
+                <Reveal key={`${service.category}-${service.title}`} delay={index * 40}>
+                  <ServiceCard {...service} />
                 </Reveal>
               ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              {visibleAllCount < allServices.length && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setVisibleAllCount((count) => Math.min(count + 8, allServices.length))
+                  }
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
+                >
+                  More Services <ChevronRight className="h-4 w-4" />
+                </button>
+              )}
+
+              {visibleAllCount > 8 && (
+                <button
+                  type="button"
+                  onClick={() => setVisibleAllCount(8)}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
+                >
+                  See Less
+                </button>
+              )}
             </div>
           </>
-        )}
-
-        {(tab === "all" || tab === "software") && (
+        ) : (
           <>
-            <Reveal delay={80}>
-              <div className="mt-16 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
-                  Software Solutions
-                </span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {softwareSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}>
-                  <ServiceCard {...s} />
+            {tab === "web" && (
+              <>
+                <Reveal delay={80}>
+                  <div className="mt-12 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                      Web Development
+                    </span>
+                    <span className="h-px flex-1 bg-border" />
+                  </div>
                 </Reveal>
-              ))}
-            </div>
-          </>
-        )}
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {webSvcs.map((s, i) => (
+                    <Reveal key={s.title} delay={i * 50}>
+                      <ServiceCard {...s} />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
 
-        {(tab === "all" || tab === "ai") && (
-          <>
-            <Reveal delay={80}>
-              <div className="mt-16 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
-                  AI & Automation
-                </span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {aiSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}>
-                  <ServiceCard {...s} />
+            {tab === "software" && (
+              <>
+                <Reveal delay={80}>
+                  <div className="mt-16 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                      Software Solutions
+                    </span>
+                    <span className="h-px flex-1 bg-border" />
+                  </div>
                 </Reveal>
-              ))}
-            </div>
-          </>
-        )}
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {softwareSvcs.map((s, i) => (
+                    <Reveal key={s.title} delay={i * 50}>
+                      <ServiceCard {...s} />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
 
-        {(tab === "all" || tab === "qa") && (
-          <>
-            <Reveal delay={80}>
-              <div className="mt-16 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
-                  QA & Testing
-                </span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {qaSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}>
-                  <ServiceCard {...s} />
+            {tab === "ai" && (
+              <>
+                <Reveal delay={80}>
+                  <div className="mt-16 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                      AI & Automation
+                    </span>
+                    <span className="h-px flex-1 bg-border" />
+                  </div>
                 </Reveal>
-              ))}
-            </div>
-          </>
-        )}
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {aiSvcs.map((s, i) => (
+                    <Reveal key={s.title} delay={i * 50}>
+                      <ServiceCard {...s} />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
 
-        {(tab === "all" || tab === "mvp") && (
-          <>
-            <Reveal delay={80}>
-              <div className="mt-16 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
-                  MVP Development
-                </span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {mvpSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}>
-                  <ServiceCard {...s} />
+            {tab === "qa" && (
+              <>
+                <Reveal delay={80}>
+                  <div className="mt-16 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                      QA & Testing
+                    </span>
+                    <span className="h-px flex-1 bg-border" />
+                  </div>
                 </Reveal>
-              ))}
-            </div>
-          </>
-        )}
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {qaSvcs.map((s, i) => (
+                    <Reveal key={s.title} delay={i * 50}>
+                      <ServiceCard {...s} />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
 
-        {(tab === "all" || tab === "devops") && (
-          <>
-            <Reveal delay={80}>
-              <div className="mt-16 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
-                  Cloud & DevOps
-                </span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {devopsSvcs.map((s, i) => (
-                <Reveal key={s.title} delay={i * 50}>
-                  <ServiceCard {...s} />
+            {tab === "mvp" && (
+              <>
+                <Reveal delay={80}>
+                  <div className="mt-16 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                      MVP Development
+                    </span>
+                    <span className="h-px flex-1 bg-border" />
+                  </div>
                 </Reveal>
-              ))}
-            </div>
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {mvpSvcs.map((s, i) => (
+                    <Reveal key={s.title} delay={i * 50}>
+                      <ServiceCard {...s} />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {tab === "devops" && (
+              <>
+                <Reveal delay={80}>
+                  <div className="mt-16 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider text-[color:var(--color-brand)]">
+                      Cloud & DevOps
+                    </span>
+                    <span className="h-px flex-1 bg-border" />
+                  </div>
+                </Reveal>
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {devopsSvcs.map((s, i) => (
+                    <Reveal key={s.title} delay={i * 50}>
+                      <ServiceCard {...s} />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
           </>
         )}
       </div>
@@ -1116,11 +1187,11 @@ const techGroups: {
     icon: Code,
     items: [
       { name: "React", logo: FaReact },
-      { name: "Next.js", logo: FaReact },
+      { name: "Next.js", logo: SiNextdotjs },
       { name: "Vue.js", logo: FaVuejs },
-      { name: "TypeScript", logo: FaJsSquare },
-      { name: "Tailwind", logo: FaCss3Alt },
-      { name: "Flutter", logo: FaMobile },
+      { name: "TypeScript", logo: SiTypescript },
+      { name: "Tailwind", logo: SiTailwindcss },
+      { name: "Flutter", logo: SiFlutter },
     ],
   },
   {
@@ -1131,17 +1202,17 @@ const techGroups: {
       { name: "Laravel", logo: FaLaravel },
       { name: "PHP", logo: FaPhp },
       { name: "Python", logo: FaPython },
-      { name: "Django", logo: FaServer },
+      { name: "Django", logo: SiDjango },
     ],
   },
   {
     label: "Database",
     icon: Database,
     items: [
-      { name: "PostgreSQL", logo: FaDatabase },
-      { name: "MySQL", logo: FaDatabase },
-      { name: "MongoDB", logo: FaLeaf },
-      { name: "Redis", logo: FaBox },
+      { name: "PostgreSQL", logo: SiPostgresql },
+      { name: "MySQL", logo: SiMysql },
+      { name: "MongoDB", logo: SiMongodb },
+      { name: "Redis", logo: SiRedis },
     ],
   },
   {
@@ -1152,7 +1223,7 @@ const techGroups: {
       { name: "Google Cloud", logo: FaGoogle },
       { name: "Azure", logo: FaMicrosoft },
       { name: "Docker", logo: FaDocker },
-      { name: "Kubernetes", logo: FaBox },
+      { name: "Kubernetes", logo: Server },
     ],
   },
   {
@@ -1160,8 +1231,10 @@ const techGroups: {
     icon: ShoppingCart,
     items: [
       { name: "WordPress", logo: FaWordpress },
-      { name: "WooCommerce", logo: FaShopify },
       { name: "Shopify", logo: FaShopify },
+      { name: "WooCommerce", logo: SiWoocommerce },
+      { name: "Joomla", logo: SiJoomla },
+      { name: "Drupal", logo: SiDrupal },
     ],
   },
   {
@@ -1173,7 +1246,7 @@ const techGroups: {
       { name: "GitLab", logo: FaGitlab },
       { name: "Jira", logo: FaJira },
       { name: "Figma", logo: FaFigma },
-      { name: "VS Code", logo: FaBox },
+      { name: "VS Code", logo: Code },
     ],
   },
 ];
@@ -1572,14 +1645,14 @@ function Contact() {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
+    const company = String(fd.get("company") ?? "").trim();
+    const service = String(fd.get("service") ?? "").trim();
     const details = String(fd.get("details") ?? "").trim();
-    // const phone = String(fd.get("phone") ?? "").trim();
-    // const phoneDigits = phone.replace(/\D/g, "");
     const phoneDigitsValue = phoneDigits;
     const fullPhone = `${selectedCountry?.dialCode ?? "+880"}${phoneDigitsValue}`;
 
@@ -1592,13 +1665,29 @@ function Contact() {
       return toast.error("Please share a few words about your project.");
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+
+    try {
+      await submitContactForm({
+        name,
+        email,
+        phone: fullPhone,
+        company,
+        service,
+        details,
+      });
+
       toast.success("Request received. We'll get back to you within 24 hours.");
-      // console.log({ phone: phoneDigits });
-      console.log({ phone: fullPhone });
-      (e.target as HTMLFormElement).reset();
-    }, 600);
+      if (e.currentTarget) {
+        e.currentTarget.reset();
+      }
+      setPhoneDigits("");
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Your request could not be sent right now.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -1634,25 +1723,8 @@ function Contact() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-4">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
-                  <Phone className="h-4 w-4" />
-                </span>
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Phone
-                  </div>
-                  <a
-                    href="tel:+1(307)393-8955
 
-"
-                    className="block text-sm font-medium hover:text-[color:var(--color-brand)]"
-                  >
-                    +1 (307) 393-8955
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
+              <li className="flex items-start gap-4 mt-8">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
                   <MapPin className="h-4 w-4" />
                 </span>
@@ -1667,24 +1739,25 @@ function Contact() {
                   </p>
                 </div>
               </li>
+
               <li className="flex items-start gap-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
                   <Phone className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
                   <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Phone
+                    Phone No.
                   </div>
                   <a
-                    href="tel:+8801842088100"
+                    href="tel:+1(307)393-8955"
                     className="block text-sm font-medium hover:text-[color:var(--color-brand)]"
                   >
-                    +88 018-42088100
+                    +1 (307) 393-8955
                   </a>
                 </div>
               </li>
 
-              <li className="flex items-start gap-4">
+              <li className="flex items-start gap-4 mt-8">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
                   <MapPin className="h-4 w-4" />
                 </span>
@@ -1697,6 +1770,23 @@ function Contact() {
                     <br />
                     Uttara, Dhaka-1230, Bangladesh
                   </p>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-[color:var(--color-brand)]">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Phone No.
+                  </div>
+                  <a
+                    href="tel:+8801842088100"
+                    className="block text-sm font-medium hover:text-[color:var(--color-brand)]"
+                  >
+                    +88 018-42088100
+                  </a>
                 </div>
               </li>
             </ul>
@@ -1743,12 +1833,13 @@ function Contact() {
                 required
                 maxLength={255}
               />
-
-              <PhoneNumberInput
-                required
-                onCountryChange={setSelectedCountry}
-                onPhoneChange={setPhoneDigits}
-              />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <PhoneNumberInput
+                  required
+                  onCountryChange={setSelectedCountry}
+                  onPhoneChange={setPhoneDigits}
+                />
+              </div>
               <div className="sm:col-span-2">
                 <Label
                   htmlFor="service"
@@ -1785,7 +1876,7 @@ function Contact() {
                   required
                   maxLength={2000}
                   placeholder="Tell us about your project, goals and timeline."
-                  rows={5}
+                  rows={8}
                   className="mt-1.5 bg-card/40 backdrop-blur"
                 />
               </div>
@@ -1866,10 +1957,31 @@ function Footer() {
             </p>
             <div className="mt-5 flex gap-2">
               {[
-                { Icon: Linkedin, href: "#", label: "LinkedIn" },
-                { Icon: Facebook, href: "#", label: "Facebook" },
-                { Icon: MessageCircle, href: "https://wa.me/8801842088100", label: "WhatsApp" },
-                { Icon: Github, href: "#", label: "GitHub" },
+                {
+                  Icon: Facebook,
+                  href: "https://www.facebook.com/newtonixtechnology",
+                  label: "Facebook",
+                },
+                {
+                  Icon: Linkedin,
+                  href: "https://www.linkedin.com/company/newtonixtechnology",
+                  label: "LinkedIn",
+                },
+                {
+                  Icon: Instagram,
+                  href: "https://www.instagram.com/newtonixtechnology/",
+                  label: "Instagram",
+                },
+                {
+                  Icon: FaPinterest,
+                  href: "https://www.pinterest.com/newtonixtechnology/",
+                  label: "Pinterest",
+                },
+                {
+                  Icon: FaXTwitter,
+                  href: "https://www.x.com/newtonixtech/",
+                  label: "Twitter",
+                },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -1914,6 +2026,14 @@ function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
+                <div className="space-y-1 text-sm">
+                  <span className="mb-4">
+                    30 N Gould St STE R Sheridan, <br /> WY 82801, USA
+                  </span>
+                </div>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
                 <div className="space-y-1">
                   <a href="tel:+1 (307) 393-8955" className="block hover:text-foreground">
@@ -1921,11 +2041,13 @@ function Footer() {
                   </a>
                 </div>
               </li>
+
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
                 <div className="space-y-1 text-sm">
-                  <span className="mb-4">
-                    30 N Gould St STE R Sheridan, <br /> WY 82801, USA
+                  <span className="text-muted-foreground">
+                    House 06, Road 02, Sector 11, <br />
+                    Uttara, Dhaka-1230, Bangladesh
                   </span>
                 </div>
               </li>
@@ -1940,23 +2062,26 @@ function Footer() {
                   </a>
                 </div>
               </li>
-
-              <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--color-brand)]" />
-                <div className="space-y-1 text-sm">
-                  <span className="text-muted-foreground">
-                    House 32, Road 4, Sector 9, <br />
-                    Uttara, Dhaka-1230, Bangladesh
-                  </span>
-                </div>
-              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <p>© 2026 Newtonix Technology | All Rights Reserved</p>
-          <p>Proudly brought to you by VISER X</p>
+          <p>© 2026 Newtonix Technology . All Rights Reserved</p>
+          <p>
+            Proudly brought to you by{" "}
+            <span className="font-bold">
+              {" "}
+              <a
+                href="https://viserx.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-foreground"
+              >
+                VISER X
+              </a>
+            </span>
+          </p>
         </div>
       </div>
     </footer>
