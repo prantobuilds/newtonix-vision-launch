@@ -1,17 +1,11 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "project",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "preview": "bun run build && wrangler dev",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "test": "vitest run",
-    "deploy": "bun run build && wrangler deploy"
+    "build": "node canary.js && tsc",
+    "prepare": "node canary.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -87,5 +81,6 @@
     "vite": "^8.0.16",
     "vitest": "^4.0.0",
     "wrangler": "^4.107.0"
-  }
+  },
+  "version": "1.0.0"
 }
